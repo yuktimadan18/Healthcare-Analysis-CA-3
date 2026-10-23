@@ -1,0 +1,62 @@
+variable_name,missing_count,missing_pct,category,role,type
+PREDIAB2,298475,65.21620381497586,Chronic Conditions,"Ever told had pre-diabetes (1=Yes, 2=Pregnancy only, 3=No)",target_candidate
+POORHLTH,189421,41.38811807634322,General Health,Number of days poor health prevented regular activities,count
+_BMI5CAT,43037,9.40350033867197,Behaviors & Risk Factors,"Four-category BMI (1=Underweight, 2=Normal, 3=Overweight, 4=Obese)",categorical
+_BMI5,43037,9.40350033867197,Behaviors & Risk Factors,"Computed Body Mass Index (continuous, 2 implied decimals)",continuous
+ECIGNOW3,30676,6.7026460113181985,Behaviors & Risk Factors,"Currently use e-cigarettes / vaping products (1=Daily, 2=Some days, 3=Not at all)",categorical
+SMOKE100,28860,6.305853562610615,Behaviors & Risk Factors,"Smoked at least 100 cigarettes in lifetime (1=Yes, 2=No)",categorical
+DIFFALON,20533,4.486420346537899,Disability & Function,"Difficulty doing errands alone (1=Yes, 2=No)",categorical
+DIFFDRES,19459,4.251753446806651,Disability & Function,"Difficulty dressing or bathing (1=Yes, 2=No)",categorical
+DIFFWALK,18672,4.0797954858304015,Disability & Function,"Serious difficulty walking or climbing stairs (1=Yes, 2=No)",categorical
+DECIDE,17441,3.810824393121682,Disability & Function,"Difficulty concentrating, remembering, or making decisions (1=Yes, 2=No)",categorical
+BLIND,16248,3.5501562261017763,Disability & Function,"Blind or serious difficulty seeing even with glasses (1=Yes, 2=No)",categorical
+DEAF,15078,3.2945135141040485,Disability & Function,"Deaf or serious difficulty hearing (1=Yes, 2=No)",categorical
+_METSTAT,14623,3.1950969038827104,Demographics,"Metropolitan status (1=Metropolitan, 2=Nonmetropolitan)",categorical
+_URBSTAT,14623,3.1950969038827104,Demographics,"Urban/rural status (1=Urban, 2=Rural)",categorical
+_MICHD,5206,1.1375008193676668,Chronic Conditions,"Reported coronary heart disease or myocardial infarction (1=Yes, 2=No)",target_candidate
+EMPLOY1,3303,0.7216990407935848,Demographics,"Employment status (1=Employed ... 8=Unable to work, 9=Refused)",categorical
+MARITAL,9,0.00196648239998252,Demographics,"Marital status (1=Married, 2=Divorced, 3=Widowed ... 9=Refused)",categorical
+CHCCOPD3,7,0.0015294863110975156,Chronic Conditions,"Ever told had C.O.P.D., emphysema, or chronic bronchitis (1=Yes, 2=No)",target_candidate
+MEDCOST1,6,0.0013109882666550133,Healthcare Access,"Could not see doctor due to cost in past 12 months (1=Yes, 2=No)",categorical
+CHCKDNY2,6,0.0013109882666550133,Chronic Conditions,"Ever told had kidney disease (1=Yes, 2=No)",target_candidate
+CHCSCNC1,6,0.0013109882666550133,Chronic Conditions,"Ever told had skin cancer (1=Yes, 2=No)",target_candidate
+HAVARTH4,5,0.0010924902222125112,Chronic Conditions,"Ever told had arthritis / rheumatoid arthritis / gout / lupus (1=Yes, 2=No)",target_candidate
+PHYSHLTH,5,0.0010924902222125112,General Health,Number of days physical health not good in past 30 days (88=0 days),count
+CHCOCNC1,5,0.0010924902222125112,Chronic Conditions,"Ever told had any other type of cancer (1=Yes, 2=No)",target_candidate
+ADDEPEV3,5,0.0010924902222125112,Chronic Conditions,"Ever told had a depressive disorder (1=Yes, 2=No)",target_candidate
+GENHLTH,5,0.0010924902222125112,General Health,"General health self-rating (1=Excellent ... 5=Poor, 7=DK, 9=Refused)",ordinal
+DIABETE4,4,0.000873992177770009,Chronic Conditions,"Ever told had diabetes (1=Yes, 2=Pregnancy only, 3=No, 4=Pre-diabetes)",target_candidate
+CVDCRHD4,3,0.0006554941333275067,Chronic Conditions,"Ever told had angina or coronary heart disease (1=Yes, 2=No)",target_candidate
+MENTHLTH,3,0.0006554941333275067,General Health,Number of days mental health not good in past 30 days (88=0 days),count
+EXERANY2,3,0.0006554941333275067,Behaviors & Risk Factors,"Participated in any physical activities in past 30 days (1=Yes, 2=No)",categorical
+ASTHMA3,3,0.0006554941333275067,Chronic Conditions,"Ever told had asthma (1=Yes, 2=No)",target_candidate
+PRIMINS2,3,0.0006554941333275067,Healthcare Access,"Primary source of health insurance (88=None, 77=DK, 99=Refused)",categorical
+PERSDOC3,3,0.0006554941333275067,Healthcare Access,"Have personal doctor/healthcare provider (1=Yes one, 2=More than one, 3=No)",categorical
+CVDSTRK3,3,0.0006554941333275067,Chronic Conditions,"Ever told had a stroke (1=Yes, 2=No)",target_candidate
+CVDINFR4,2,0.0004369960888850045,Chronic Conditions,"Ever told had a heart attack / myocardial infarction (1=Yes, 2=No)",target_candidate
+CHECKUP1,2,0.0004369960888850045,Healthcare Access,Time since last routine checkup (1=Past year ... 8=Never),ordinal
+_STATE,0,0.0,Survey Design,State FIPS identifier,int
+_PSU,0,0.0,Survey Design,Primary Sampling Unit cluster identifier,int
+_RFHLTH,0,0.0,General Health,"Calculated good or better health (1=Good/Better, 2=Fair/Poor, 9=Missing)",categorical
+_LLCPWT,0,0.0,Survey Design,Final survey weight for landline and cellular combined,float
+_PHYS14D,0,0.0,General Health,"Physical health summary (1=0 days, 2=1-13 days, 3=14+ days, 9=Missing)",categorical
+_HLTHPL2,0,0.0,Healthcare Access,"Have any health care coverage (1=Yes, 2=No, 9=Missing)",categorical
+_TOTINDA,0,0.0,Behaviors & Risk Factors,"Adults with any leisure-time physical activity (1=Yes, 2=No)",categorical
+_MENT14D,0,0.0,General Health,"Mental health summary (1=0 days, 2=1-13 days, 3=14+ days, 9=Missing)",categorical
+_STSTR,0,0.0,Survey Design,Sample design stratification variable,int
+_RACE,0,0.0,Demographics,"Race/ethnicity category (1=White NH ... 8=Hispanic, 9=Missing)",categorical
+_ASTHMS1,0,0.0,Chronic Conditions,"Computed asthma status (1=Current, 2=Former, 3=Never, 9=Missing)",categorical
+_SEX,0,0.0,Demographics,"Sex of respondent (1=Male, 2=Female)",categorical
+_AGEG5YR,0,0.0,Demographics,"14-level five-year age categories (1=18-24 ... 13=80+, 14=Missing)",categorical
+_AGE80,0,0.0,Demographics,Imputed age value collapsed at 80 years old,numeric
+_AGE65YR,0,0.0,Demographics,"Binary age threshold (1=18-64, 2=65+, 3=Missing)",categorical
+_RFBMI5,0,0.0,Behaviors & Risk Factors,"Overweight or obese calculated variable (1=No, 2=Yes, 9=Missing)",categorical
+_EDUCAG,0,0.0,Demographics,"Education level completed (1=No HS ... 4=College Grad, 9=Missing)",categorical
+_INCOMG1,0,0.0,Demographics,"Annual household income category (1=<$15k ... 7=$200k+, 9=Missing)",categorical
+_SMOKER3,0,0.0,Behaviors & Risk Factors,"Four-level smoker status (1=Daily, 2=Someday, 3=Former, 4=Never)",categorical
+_RFSMOK3,0,0.0,Behaviors & Risk Factors,"Current cigarette smoking calculated variable (1=No, 2=Yes)",categorical
+_CURECI3,0,0.0,Behaviors & Risk Factors,"Current e-cigarette user calculated status (1=No, 2=Yes)",categorical
+DRNKANY6,0,0.0,Behaviors & Risk Factors,"Drank any alcoholic beverage in past 30 days (1=Yes, 2=No)",categorical
+_RFBING6,0,0.0,Behaviors & Risk Factors,"Binge drinking calculated variable (1=No, 2=Yes)",categorical
+_DRNKWK3,0,0.0,Behaviors & Risk Factors,Calculated total drinks per week (continuous),continuous
+_RFDRHV9,0,0.0,Behaviors & Risk Factors,"Heavy drinkers calculated variable (1=No, 2=Yes)",categorical

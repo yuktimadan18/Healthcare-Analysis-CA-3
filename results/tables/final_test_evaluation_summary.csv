@@ -1,0 +1,5 @@
+evaluation_mode,threshold,threshold_label,pr_auc,roc_auc,brier_score,brier_skill_score,sensitivity,specificity,precision_ppv,npv,f1_score,balanced_accuracy,youden_j
+Unweighted Sample Performance,0.5,Default Threshold (0.50),0.3808,0.8492,0.0694,0.182,0.1091,0.9926,0.6026,0.9152,0.1848,0.5509,0.1017
+Unweighted Sample Performance,0.08,Locked Optimal Threshold (0.080),0.3808,0.8492,0.0694,0.182,0.8391,0.7045,0.2267,0.977,0.3569,0.7718,0.5436
+Survey-Weighted Population Estimates (_LLCPWT),0.5,Default Threshold (0.50),0.3594,0.8726,0.0514,0.1843,0.0934,0.9958,0.6172,0.9381,0.1623,0.5446,0.0892
+Survey-Weighted Population Estimates (_LLCPWT),0.08,Locked Optimal Threshold (0.080),0.3594,0.8726,0.0514,0.1843,0.8044,0.7946,0.2212,0.9825,0.3469,0.7995,0.599

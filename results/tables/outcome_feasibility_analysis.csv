@@ -1,0 +1,11 @@
+variable,condition_name,category,valid_positive,valid_negative,total_valid,dont_know_count,refused_count,other_special_count,missing_nan_count,row_checksum,completeness_pct,unweighted_prev_pct,weighted_prev_pct,imbalance_ratio,prevalence_gap_pct
+_MICHD,Myocardial Infarction / CHD,Cardiovascular,42338,410126,452464,0,0,0,5206,457670,98.86,9.36,6.8,9.69,2.56
+CVDINFR4,Heart Attack (History),Cardiovascular,26672,427883,454555,2857,256,0,2,457670,99.32,5.87,4.38,16.04,1.49
+CVDCRHD4,Angina / Coronary Heart Disease,Cardiovascular,28511,424581,453092,4297,278,0,3,457670,99.0,6.29,4.31,14.89,1.98
+CVDSTRK3,Stroke (Ever Diagnosed),Cerebrovascular,20661,435557,456218,1244,205,0,3,457670,99.68,4.53,3.53,21.08,1.0
+DIABETE4,Diabetes (Ever Diagnosed),Metabolic,65809,387432,453241,798,232,3395,4,457670,99.03,14.52,12.63,5.89,1.88
+ASTHMA3,Asthma (Ever Diagnosed),Respiratory,72037,383772,455809,1650,208,0,3,457670,99.59,15.8,15.73,5.33,0.08
+CHCCOPD3,COPD / Emphysema,Respiratory,36921,418575,455496,1921,246,0,7,457670,99.52,8.11,6.3,11.34,1.81
+ADDEPEV3,Depressive Disorder,Mental Health,96125,358881,455006,2066,593,0,5,457670,99.42,21.13,21.04,3.73,0.08
+CHCKDNY2,Kidney Disease,Renal,23752,431939,455691,1715,258,0,6,457670,99.57,5.21,4.13,18.19,1.09
+HAVARTH4,Arthritis (Diagnosed),Musculoskeletal,158319,296778,455097,2273,295,0,5,457670,99.44,34.79,26.55,1.87,8.24

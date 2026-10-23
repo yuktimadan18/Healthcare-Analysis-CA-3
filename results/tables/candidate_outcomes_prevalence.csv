@@ -1,0 +1,11 @@
+Variable,Clinical Condition,Positive Cases,Negative Cases,Missing/Excluded,Unweighted Prev (%),Weighted Prev (%),Imbalance Ratio
+_MICHD,Myocardial Infarction / CHD,42338,410126,5206,9.36,6.8,1 : 9.7
+CVDINFR4,Heart Attack (History),26672,427883,3115,5.87,4.38,1 : 16.0
+CVDCRHD4,Angina / Coronary Heart Disease,28511,424581,4578,6.29,4.31,1 : 14.9
+CVDSTRK3,Stroke (Ever Diagnosed),20661,435557,1452,4.53,3.53,1 : 21.1
+DIABETE4,Diabetes (Ever Diagnosed),65809,387432,4429,14.52,12.63,1 : 5.9
+ASTHMA3,Asthma (Ever Diagnosed),72037,383772,1861,15.8,15.73,1 : 5.3
+CHCCOPD3,COPD / Emphysema,36921,418575,2174,8.11,6.3,1 : 11.3
+ADDEPEV3,Depressive Disorder,96125,358881,2664,21.13,21.04,1 : 3.7
+CHCKDNY2,Kidney Disease,23752,431939,1979,5.21,4.13,1 : 18.2
+HAVARTH4,Arthritis,158319,296778,2573,34.79,26.55,1 : 1.9

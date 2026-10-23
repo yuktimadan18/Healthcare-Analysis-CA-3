@@ -1,0 +1,5 @@
+model_key,model_name,val_pr_auc,val_roc_auc,val_brier_score,val_brier_skill_score,val_mean_pred_prob,sens_at_050,spec_at_050,f1_at_050,sens_at_prev_th,spec_at_prev_th,f1_at_prev_th,survey_weighted_pr_auc,survey_weighted_roc_auc,survey_weighted_brier
+hist_gradient_boosting_unweighted,HistGradientBoosting (Unweighted GBDT),0.3701,0.8449,0.07,0.1746,0.0934,0.1066,0.9919,0.1799,0.7983,0.7371,0.3675,0.3547,0.8627,0.0518
+hist_gradient_boosting_balanced,HistGradientBoosting (Class-Weighted GBDT),0.3687,0.845,0.1652,-0.9481,0.3468,0.8035,0.7347,0.3675,0.9874,0.2857,0.2217,0.3579,0.8636,0.1257
+logistic_regression_unweighted,Logistic Regression (Unweighted Baseline),0.3658,0.8413,0.0705,0.1691,0.0933,0.1261,0.9892,0.2049,0.787,0.7453,0.37,0.3514,0.8579,0.0521
+logistic_regression_balanced,Logistic Regression (Class-Weighted),0.3646,0.8413,0.1661,-0.958,0.3547,0.784,0.7485,0.3715,0.9891,0.231,0.2096,0.3508,0.8583,0.1269

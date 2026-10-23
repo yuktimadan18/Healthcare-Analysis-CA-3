@@ -1,0 +1,9 @@
+,BMI (_BMI5),Days Physical Health Not Good (PHYSHLTH),Days Mental Health Not Good (MENTHLTH),Drinks per Week (_DRNKWK3)
+count,414633.0,446603.0,449514.0,410972.0
+mean,28.56,4.61,4.41,2.79
+std,6.59,8.93,8.36,8.96
+min,12.0,0.0,0.0,0.0
+25%,24.14,0.0,0.0,0.0
+50%,27.44,0.0,0.0,0.23
+75%,31.75,4.0,5.0,2.1
+max,99.84,30.0,30.0,532.0

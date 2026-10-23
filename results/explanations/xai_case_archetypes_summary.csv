@@ -1,0 +1,5 @@
+category,case_id,validation_row_index,actual_target,predicted_probability,locked_threshold,predicted_class,age_years,general_health_code,sex_code,stroke_code,physical_unhealthy_days,bmi_numeric,archetype_description
+True Positive (TP),VALIDATION_ID_56065,29763,1,0.2671,0.08,1,76.0,4.0,2.0,2.0,5.0,24.33,High-risk respondent with reported CAD/MI history correctly flagged by screening model.
+False Positive (FP),VALIDATION_ID_279669,35654,0,0.1655,0.08,1,60.0,5.0,2.0,2.0,30.0,25.75,Screening alert: Elevated risk profile above threshold without reported CAD/MI diagnosis.
+True Negative (TN),VALIDATION_ID_253891,61735,0,0.0164,0.08,0,41.0,1.0,2.0,2.0,0.0,34.97,Low-risk baseline respondent correctly classified below screening threshold.
+False Negative (FN),VALIDATION_ID_44471,7706,1,0.0442,0.08,0,73.0,2.0,2.0,2.0,0.0,20.73,Under-detected respondent with reported CAD/MI history presenting low conventional risk scores.

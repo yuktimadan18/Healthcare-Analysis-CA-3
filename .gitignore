@@ -97,3 +97,13 @@ $RECYCLE.BIN/
 project_inventory.txt
 data_inventory.txt
 .pytest_cache/
+
+
+# Temporary development utilities
+scratch/
+
+# Keep local respondent-level data and generated artifacts private
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep

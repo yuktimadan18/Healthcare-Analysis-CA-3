@@ -2,20 +2,6 @@
 
 **An Explainable Data-Driven Framework for Population Health Analytics and Predictive Modeling**
 
-
-<p align="center">
-  <a href="https://yuktimadan18.github.io/Healthcare-Analytics-CA-3/">
-    <strong>🌐 View Live Interactive Dashboard</strong>
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://yuktimadan18.github.io/Healthcare-Analytics-CA-3/">
-    <img src="https://img.shields.io/badge/Dashboard-Live%20on%20GitHub%20Pages-2E8B8B?style=for-the-badge" alt="Live Dashboard" />
-  </a>
-</p>
-
-
 A reproducible healthcare analytics project using the CDC Behavioral Risk Factor Surveillance System (BRFSS) 2024 combined landline and cellular survey dataset. The project combines population-health exploration, survey-aware statistical analysis, supervised machine learning, model evaluation, explainable AI (XAI), and an interactive dashboard.
 
 > **Responsible-use statement:** This project studies associations in cross-sectional, self-reported public-health surveillance data. Its predictions are not clinical diagnoses, do not establish causation, and must not be used to make individual medical decisions.
@@ -211,6 +197,14 @@ The executed notebook is `notebooks/05_explainable_ai_analysis.ipynb`. Generated
 ## Interactive Dashboard
 
 The dashboard is an academic single-page application titled **“Population Health Analytics & Explainable ML — CDC BRFSS 2024.”** It uses HTML, CSS, vanilla JavaScript, precomputed JSON data bundles, and Plotly.js.
+
+
+### Dashboard Preview
+
+![Population Health Analytics Dashboard](dashboard_overview.png)
+
+[**Open Live Interactive Dashboard →**](https://yuktimadan18.github.io/Healthcare-Analytics-CA-3/)
+
 
 ### Dashboard sections
 

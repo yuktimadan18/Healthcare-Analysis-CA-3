@@ -1,0 +1,32 @@
+{
+  "status": "LOCKED",
+  "primary_selection_metric": "pr_auc",
+  "champion_model_key": "hist_gradient_boosting_unweighted",
+  "champion_model_name": "HistGradientBoosting (Unweighted GBDT)",
+  "validation_pr_auc": 0.3701,
+  "validation_roc_auc": 0.8449,
+  "validation_brier_score": 0.07,
+  "selected_operational_threshold": 0.08,
+  "selection_objective": "youden_j (Balanced Population Screening)",
+  "candidate_thresholds": {
+    "default_050": 0.5,
+    "empirical_prevalence_ref": 0.0936,
+    "optimal_youden_j": 0.08,
+    "optimal_f1": 0.21,
+    "target_75pct_recall": 0.11
+  },
+  "validation_metrics_at_selected_threshold": {
+    "threshold": 0.08,
+    "sensitivity": 0.8329,
+    "specificity": 0.7028,
+    "precision_ppv": 0.2244,
+    "npv": 0.976,
+    "f1_score": 0.3536,
+    "balanced_accuracy": 0.7679,
+    "youden_j": 0.5357,
+    "tp": 5290.0,
+    "fp": 18283.0,
+    "tn": 43236.0,
+    "fn": 1061.0
+  }
+}

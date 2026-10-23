@@ -1,165 +1,354 @@
 # CDC BRFSS 2024 Healthcare Analytics
 
-## Project Overview
-This project builds an explainable, reproducible healthcare analytics and predictive modeling framework using the **CDC Behavioral Risk Factor Surveillance System (BRFSS) 2024** combined landline and cellular survey dataset.
+**An Explainable Data-Driven Framework for Population Health Analytics and Predictive Modeling**
 
-The analytics workflow strictly follows the standardized guidelines established in `PROJECT_RULES.md`, emphasizing complex survey design principles, prevention of data leakage, modular engineering, and clinical/ethical awareness (distinguishing predictive associations from clinical diagnoses).
+A reproducible healthcare analytics project using the CDC Behavioral Risk Factor Surveillance System (BRFSS) 2024 combined landline and cellular survey dataset. The project combines population-health exploration, survey-aware statistical analysis, supervised machine learning, model evaluation, explainable AI (XAI), and an interactive dashboard.
 
-> **Current Project Status**: Milestones 1 through 7 are complete. Supervised models classifying self-reported cardiovascular disease history (`_MICHD`) have been developed, evaluated, and comprehensively explained using Explainable AI (XAI). Validation-only model comparison selected **HistGradientBoostingClassifier (Unweighted GBDT)** as Champion ($\text{PR-AUC} = 0.3701$, $\text{ROC-AUC} = 0.8449$, $\text{Brier} = 0.0700$), with its operational screening threshold locked at $\tau = 0.080$ (Youden's J cutoff). Final test holdout evaluation confirmed an unweighted Sensitivity of 83.91%, Specificity of 70.45%, NPV of 97.69%, PR-AUC of 0.3808, and ROC-AUC of 0.8492. Milestone 7 implemented global and local XAI: (1) bijective feature mapping from 38 original predictors to 190 transformed features, (2) grouped permutation importance over 10 repeats, (3) unscaled partial dependence profiles for age, physical health limitations, and BMI, (4) transparent local marginal perturbation attributions ($\Delta p$) and local Ridge linear surrogate models ($R^2 > 0.93$) across representative validation quadrants (TP, FP, TN, FN), and (5) the executed analysis notebook `notebooks/05_explainable_ai_analysis.ipynb`. All attributions describe mathematical model behavior in cross-sectional surveillance data and do not establish causal intervention effects or clinical diagnostic validity.
+> **Responsible-use statement:** This project studies associations in cross-sectional, self-reported public-health surveillance data. Its predictions are not clinical diagnoses, do not establish causation, and must not be used to make individual medical decisions.
 
 ---
 
-## Milestone 7: Explainable Artificial Intelligence (XAI)
+## Table of Contents
 
-Milestone 7 delivers a methodologically rigorous, dependency-safe interpretability framework auditing the frozen champion GBDT model strictly on the **validation partition** ($N = 67,870$), keeping the holdout test partition quarantined.
+- [Project at a Glance](#project-at-a-glance)
+- [Problem Statement and Objectives](#problem-statement-and-objectives)
+- [Dataset and Target Definition](#dataset-and-target-definition)
+- [End-to-End Workflow](#end-to-end-workflow)
+- [Analysis and Modeling](#analysis-and-modeling)
+- [Model Evaluation](#model-evaluation)
+- [Explainable AI](#explainable-ai)
+- [Interactive Dashboard](#interactive-dashboard)
+- [Key Findings](#key-findings)
+- [Repository Structure](#repository-structure)
+- [Environment and Setup](#environment-and-setup)
+- [Reproducibility and Testing](#reproducibility-and-testing)
+- [Project Roadmap](#project-roadmap)
+- [Limitations and Responsible Use](#limitations-and-responsible-use)
+- [Data Source](#data-source)
 
-### 1. Explanation Methodologies
-- **Bijective Feature Mapping:** Bridges 38 original survey variables to 190 preprocessed features (`results/tables/xai_feature_mapping_audit.csv`), preventing dummy confusion.
-- **Global Grouped Permutation Importance:** Simultaneously permutes all dummy indicators belonging to each parent variable across 10 reproducible repeats (seed 42), eliminating indicator dilution. Evaluated primarily by **PR-AUC decrease** due to class imbalance ($9.36\%$ prevalence).
-- **Unscaled Partial Dependence Profiles (PDP):** Uses recursion PDP unscaled via fitted `StandardScaler` statistics to natural survey units (years, days, $\text{kg/m}^2$) and transformed via logistic sigmoid to marginal predicted probabilities.
-- **Local Marginal Perturbation Attribution ($\Delta p$):** Transparent, model-agnostic local method evaluating risk shifts $\Delta p_v = f(x) - \mathbb{E}_{z \sim \mathcal{D}_{\text{bg}}}[f(x_{C_v \leftarrow z_{C_v}})]$ relative to an empirical background sample ($M = 200$).
-- **Local Sparse Linear Surrogates:** Fits weighted Ridge regressions on $N = 1,000$ neighborhood perturbations weighted by an exponential distance kernel, demonstrating high local fidelity ($R^2 \in [0.931, 0.969]$).
+---
 
-### 2. Key Empirical Findings
-- **Top Population Predictors:** `_AGE80` (Rank 1, mean PR-AUC drop $0.0772$), `GENHLTH` (Rank 2, drop $0.0434$), `_SEX` (Rank 3, drop $0.0380$), `CVDSTRK3` (Rank 4, drop $0.0306$), and `PERSDOC3` (Rank 5, drop $0.0127$).
-- **Age Risk Trajectory:** Partial dependence reveals an accelerating risk curve that crosses the locked screening threshold ($0.080$) at approximately **$54$ years of age**, rising above $23\%$ by age 80.
-- **Representative Case Archetypes:**
-  - *True Positive (`VALIDATION_ID_56065`, $\hat{p} = 0.267$):* Driven by age 76, fair health, kidney disease, and diabetes.
-  - *False Positive (`VALIDATION_ID_279669`, $\hat{p} = 0.166$):* Screening alert driven by poor health and 30 days of physical illness without reported diagnosis.
-  - *True Negative (`VALIDATION_ID_253891`, $\hat{p} = 0.016$):* Protected by young age (41) and complete absence of chronic disease despite Class I obesity.
-  - *False Negative (`VALIDATION_ID_44471`, $\hat{p} = 0.044$):* Favorable self-reported vitality ("Very Good" health) and normal BMI mask disease history, suppressing predicted risk below threshold despite age 73.
+## Project at a Glance
 
-### 3. How to Run XAI Pipelines and Notebook
+| Item | Description |
+|---|---|
+| Data source | CDC Behavioral Risk Factor Surveillance System (BRFSS), 2024 |
+| Data format | Combined landline and cellular survey data |
+| Analytical task | Classification of self-reported cardiovascular disease history |
+| Target variable | `_MICHD` |
+| Eligible cohort | 452,464 respondents |
+| Positive target records | 42,338 |
+| Negative target records | 410,126 |
+| Unweighted positive prevalence | 9.36% |
+| Survey-weighted prevalence reported by the project | 6.80% |
+| Modeling approach | Comparison of four supervised models |
+| Selected model | `HistGradientBoostingClassifier` (unweighted GBDT) |
+| Explainability | Grouped permutation importance, partial dependence, local perturbation explanations, and local surrogate models |
+| Dashboard | HTML, CSS, JavaScript, precomputed JSON, and Plotly.js |
+| Intended use | Educational research and population-health analysis |
+
+## Problem Statement and Objectives
+
+Cardiovascular disease is an important population-health concern, but public-health survey data are complex: observations are self-reported, outcomes may be imbalanced, and the survey design affects how population estimates should be interpreted. A useful analytical workflow must therefore do more than train a classifier. It should document data quality, examine population patterns, prevent data leakage, evaluate model performance beyond accuracy, explain model behavior, and communicate limitations clearly.
+
+This project aims to:
+
+1. Inspect and validate the BRFSS 2024 data and its documentation.
+2. Explore data quality, variable distributions, and population-health patterns.
+3. Conduct statistical analysis while distinguishing unweighted sample summaries from survey-weighted estimates.
+4. Define a defensible predictive target and prevent target leakage.
+5. Build reproducible preprocessing and feature-engineering steps.
+6. Compare supervised classifiers using validation data and evaluate the selected model on a held-out test partition.
+7. Explain global model behavior and selected local predictions.
+8. Present the analytical outputs through an interactive dashboard.
+9. Document reproducibility, ethical boundaries, and the limits of the evidence.
+
+## Dataset and Target Definition
+
+### Source
+
+The dataset is the CDC BRFSS 2024 combined landline and cellular survey file.
+
+- **Official data and documentation:** https://www.cdc.gov/brfss/annual_data/annual_2024.html
+- The original archive is expected locally at `data/raw/LLCP2024XPT.zip`.
+- The raw archive is excluded from version control; users should obtain it from the official CDC source.
+
+### Cohort and target
+
+The project reports **452,464 eligible respondents** after applying its target eligibility rules.
+
+The target, `_MICHD`, represents a self-reported history of myocardial infarction or coronary heart disease, constructed from the source survey items `CVDINFR4` and `CVDCRHD4`.
+
+| Target class | Records | Share of eligible cohort |
+|---|---:|---:|
+| Positive (`_MICHD` = 1) | 42,338 | 9.36% |
+| Negative (`_MICHD` = 0) | 410,126 | 90.64% |
+| **Total** | **452,464** | **100%** |
+
+The positive class is the minority class, at approximately **9.69 negative records per positive record**. This imbalance is one reason the project reports precision-recall performance and threshold-dependent metrics instead of relying on accuracy alone.
+
+### Survey design considerations
+
+The project keeps survey design fields such as `_LLCPWT`, `_STSTR`, `_PSU`, and `_STATE` separate from the model predictor matrix. The project reports both unweighted sample results and survey-weighted population estimates where implemented. These quantities answer different questions and should not be treated as interchangeable.
+
+The target-source variables used to construct `_MICHD` are excluded from predictors to reduce direct target leakage.
+
+## End-to-End Workflow
+
+The project is organized as a sequence of analytical stages. The numbered notebooks provide the main narrative of the work; supporting scripts, configuration files, results, and tests provide implementation and validation details.
+
+1. **Repository and environment audit** — review the project structure, establish configuration and execution conventions, and verify the Python environment.
+2. **Data documentation and ingestion** — inspect the official CDC codebook and metadata, validate the source data, and establish the target definition.
+3. **Data quality assessment and EDA** — examine data quality, missingness, distributions, and exploratory population-health patterns.
+4. **Statistical analysis** — investigate health-related patterns and calculate survey-weighted summaries where implemented.
+5. **Target formulation and feature engineering** — establish the prediction task, exclude target-source variables from predictors, prepare features, and create separated data partitions.
+6. **Model development and evaluation** — compare supervised models on validation data, select a champion model, lock the operating threshold, and report held-out test performance.
+7. **Explainable AI** — investigate global predictor importance, partial dependence, and representative local predictions on the validation partition.
+8. **Interactive dashboard** — package selected precomputed results in an interactive web interface.
+9. **Final verification and delivery** — complete the integration audit, verify the final documentation and reproducibility instructions, and record the final delivery status.
+
+### Data split and leakage prevention
+
+The recorded modeling workflow uses a stratified **70% training / 15% validation / 15% test split**, with random seed **42**. Preprocessing is fitted using training data and then applied to the other partitions. Model selection and XAI analysis use the validation partition; the test partition is reserved for final evaluation.
+
+The project reports a transformation from **38 original predictors to 190 transformed features**. See the feature-engineering notebook and the feature-mapping audit table for implementation details.
+
+## Analysis and Modeling
+
+### Exploratory and statistical analysis
+
+The early analysis stages are designed to establish the quality and context of the data before predictive modeling. The project contains dedicated notebooks for data quality and EDA, statistical analysis, and feature engineering/splitting.
+
+The repository includes generated figures and tables under `results/figures/` and `results/tables/`. Refer to those artifacts and the notebooks for the exact variables, statistical tests, estimates, and interpretation produced by each analysis. Do not interpret unweighted sample proportions as population estimates.
+
+### Predictive modeling
+
+The project compares four supervised model architectures. Validation-only model comparison selected `HistGradientBoostingClassifier` (unweighted gradient-boosted decision trees) as the champion, using **PR-AUC** as the primary model-selection metric because the positive class is relatively uncommon.
+
+The operational threshold was selected on validation data using Youden's J criterion and locked at **0.080** before final test evaluation. This is a project-specific screening threshold, not a clinically validated cutoff.
+
+## Model Evaluation
+
+### Champion model results
+
+| Metric | Reported result |
+|---|---:|
+| Validation PR-AUC | 0.3701 |
+| Validation ROC-AUC | 0.8449 |
+| Validation Brier score | 0.0700 |
+| Locked operating threshold | 0.080 |
+| Test PR-AUC | 0.3808 |
+| Test ROC-AUC | 0.8492 |
+| Test sensitivity | 83.91% |
+| Test specificity | 70.45% |
+| Test negative predictive value (NPV) | 97.69% |
+| Test precision | 22.67% |
+| Test F1 score | 0.3569 |
+| Test balanced accuracy | 77.18% |
+
+The test confusion matrix at the locked threshold was:
+
+| | Predicted positive | Predicted negative |
+|---|---:|---:|
+| **Actual positive** | TP = 5,328 | FN = 1,022 |
+| **Actual negative** | FP = 18,179 | TN = 43,341 |
+
+These results illustrate the trade-off associated with the chosen threshold: sensitivity is relatively high, while precision is lower. A positive prediction is therefore not evidence that a respondent has a clinically confirmed condition. The high NPV is specific to this dataset, target definition, evaluation split, and threshold; it should not be assumed to generalize to another population.
+
+## Explainable AI
+
+Milestone 7 implemented global and local interpretability analyses for the frozen champion model on the **validation partition** (`N = 67,870`). The holdout test partition was kept separate from the explanation analysis.
+
+### Methods
+
+- **Bijective feature mapping:** links 38 original survey variables to 190 transformed features in `results/tables/xai_feature_mapping_audit.csv`.
+- **Grouped permutation importance:** permutes indicators belonging to the same original variable together, using 10 reproducible repeats with seed 42. PR-AUC decrease is emphasized because of class imbalance.
+- **Partial dependence profiles:** reports profiles for age, physical health limitation days, and BMI in interpretable units.
+- **Local marginal perturbation attribution (`Δp`):** estimates how a model prediction changes when a feature group is perturbed relative to an empirical background sample (`M = 200`).
+- **Local sparse linear surrogates:** fits weighted Ridge models to local perturbations to describe behavior near selected validation examples.
+
+### Selected findings
+
+The reported top five population predictors by grouped permutation importance were:
+
+| Rank | Predictor | Mean PR-AUC decrease |
+|---:|---|---:|
+| 1 | `_AGE80` | 0.0772 |
+| 2 | `GENHLTH` | 0.0434 |
+| 3 | `_SEX` | 0.0380 |
+| 4 | `CVDSTRK3` | 0.0306 |
+| 5 | `PERSDOC3` | 0.0127 |
+
+The reported age partial-dependence profile crosses the locked model threshold of 0.080 at approximately age 54 and rises above 23% by age 80. This is a model-derived marginal pattern, **not** a clinical age threshold or causal estimate.
+
+The local analysis includes representative true-positive, false-positive, true-negative, and false-negative validation examples. These are model-behavior examples and should not be interpreted as individual medical assessments.
+
+### Re-run the XAI scripts
+
+From the project root in Windows PowerShell:
+
 ```powershell
-# 1. Run global importance and partial dependence analysis (Generates Figs 16-18)
 .venv\Scripts\python.exe src/xai/global_importance.py
-
-# 2. Run local explanations and archetype analysis (Generates Fig 19)
 .venv\Scripts\python.exe src/xai/local_explanations.py
-
-# 3. Run all unit tests (19 passed)
-.venv\Scripts\python.exe -m unittest discover tests
-
-# 4. View executed XAI notebook
-# notebooks/05_explainable_ai_analysis.ipynb
 ```
 
----
+The executed notebook is `notebooks/05_explainable_ai_analysis.ipynb`. Generated figures and tables are saved in the project results directories according to the scripts' configuration.
+
+## Interactive Dashboard
+
+The dashboard is an academic single-page application titled **“Population Health Analytics & Explainable ML — CDC BRFSS 2024.”** It uses HTML, CSS, vanilla JavaScript, precomputed JSON data bundles, and Plotly.js.
+
+### Dashboard sections
+
+1. **Overview and scope** — cohort information, target context, champion model, methodology, and responsible-use notices.
+2. **Population Health Explorer** — interactive exploration of 12 demographic and health constructs, including unweighted counts and survey-weighted percentages where available.
+3. **Model Performance** — comparison of four supervised models and presentation of evaluation plots and final holdout metrics.
+4. **Threshold Analysis** — interactive threshold slider with a dynamically updated confusion matrix, alongside the locked threshold of 0.080.
+5. **Explainable AI** — grouped feature importance, transformed-feature ranking, partial dependence profiles, and representative local cases.
+6. **Limitations and Responsible Use** — boundaries of cross-sectional surveillance data and warnings against individual clinical diagnosis.
+
+### Run locally
+
+From the repository root, run:
+
+```powershell
+.venv\Scripts\python.exe -m http.server 8501 --directory dashboard
+```
+
+Then open: http://localhost:8501/
+
+Alternatively, serve from the repository root:
+
+```powershell
+.venv\Scripts\python.exe -m http.server 8501
+```
+
+Then open: http://localhost:8501/dashboard/
+
+**Network requirement:** the current dashboard loads Plotly.js from `https://cdn.plot.ly/plotly-2.35.2.min.js`. An internet connection is required for the chart library to load. The dashboard data bundles and styling are stored in the repository.
+
+> **Live deployment:** Add the public GitHub Pages URL here after deployment has been configured and the published site has been verified. A GitHub repository link is not itself a live dashboard link.
+
+## Key Findings
+
+- The target has an unweighted prevalence of **9.36%** in the eligible cohort, making class imbalance a relevant modeling consideration.
+- The selected model achieved a held-out test PR-AUC of **0.3808** and ROC-AUC of **0.8492**.
+- At the locked 0.080 threshold, test sensitivity was **83.91%**, specificity was **70.45%**, and precision was **22.67%**. These metrics should be interpreted together.
+- Age, general health, sex, stroke history, and having a personal doctor were the five highest-ranked predictors in the reported grouped permutation analysis.
+- The XAI analyses provide descriptions of model behavior, not evidence of causation or clinical validity.
+- The dashboard makes selected analysis results explorable without requiring users to rerun the modeling pipeline.
 
 ## Repository Structure
+
 ```text
 Project/
-├── .venv/                  # Virtual environment (Python 3.13.14)
-├── .vscode/                # Workspace editor settings
-├── config/                 # Pipeline and model configuration files
-├── dashboard/              # Interactive dashboard application (Milestone 8)
+├── config/                 # Pipeline and model configuration
+├── dashboard/              # Interactive dashboard and precomputed JSON
+│   ├── components/         # Dashboard data, chart, and view components
+│   └── data/               # Dashboard-ready result bundles
 ├── data/
-│   ├── raw/                # Original CDC BRFSS 2024 ZIP archive
-│   ├── interim/            # Transformed / partitioned intermediate data
-│   └── processed/          # Analysis- and modeling-ready datasets
-├── docs/                   # Methodological documentation & project decisions
-├── models/                 # Serialized model artifacts, lock summaries, and baselines
-├── notebooks/              # Modular Jupyter analysis notebooks
+│   ├── raw/                # Original CDC archive (excluded from Git)
+│   ├── interim/            # Intermediate data (local)
+│   └── processed/          # Processed data (local)
+├── docs/                   # Methodological documentation and decisions
+├── notebooks/
 │   ├── 01_data_quality_and_eda.ipynb
 │   ├── 02_statistical_analysis.ipynb
 │   ├── 03_feature_engineering_and_splits.ipynb
 │   ├── 04_model_development_and_evaluation.ipynb
 │   └── 05_explainable_ai_analysis.ipynb
-├── reports/                # Generated reports and summaries
-├── results/                # Evaluation metrics, charts, and artifacts
-│   ├── explanations/       # Local XAI archetype tables and attributions
-│   ├── figures/            # Visualizations (Figs 01-19)
+├── reports/                # Reports and summaries
+├── results/
+│   ├── explanations/       # Local explanation outputs
+│   ├── figures/            # Generated figures
 │   └── tables/             # Audit and performance tables
-├── src/                    # Modular source code package
-│   ├── analysis/           # Statistical analysis modules
-│   ├── data/               # Ingestion and validation scripts
-│   ├── evaluation/         # Metrics and performance evaluation
+├── src/
+│   ├── analysis/           # Statistical analysis
+│   ├── data/               # Data ingestion and validation
+│   ├── evaluation/         # Evaluation metrics
 │   ├── features/           # Feature selection and transformation
 │   ├── models/             # Model training pipelines
-│   ├── preprocessing/      # Cleaning and missing-value handling
-│   └── xai/                # Explainable AI (global & local interpretability)
-├── tests/                  # Automated unit test suites
-├── .gitignore              # Environment, data, and secret exclusions
-├── PROJECT_RULES.md        # Binding project execution constraints & workflow
-├── README.md               # Project overview and setup documentation
-└── requirements.txt        # Verified core dependencies
+│   ├── preprocessing/      # Cleaning and missing-data handling
+│   └── xai/                # Explainability pipelines
+├── tests/                  # Automated tests
+├── .gitignore
+├── PROJECT_RULES.md        # Project workflow and constraints
+├── README.md
+└── requirements.txt        # Core dependency pins
 ```
 
----
+**Note:** The raw survey archive, local datasets, virtual environment, and serialized model artifacts may be excluded from version control. The repository alone may not be sufficient to reproduce every analysis unless the official data and any required local artifacts are obtained and placed as expected.
 
-## Environment & Setup Instructions
+## Environment and Setup
 
-### 1. Prerequisites & Interpreter
-The project uses the pre-configured local virtual environment:
-* **Operating System:** Windows (AMD64)
-* **Python Executable:** `.venv\Scripts\python.exe` (Python 3.13.14)
+The original development environment recorded for this project is Windows (AMD64) with Python 3.13.14 and a project-local virtual environment.
 
-### 2. Dependencies
-Core packages have been pre-installed in the virtual environment. To inspect or reproduce the environment:
+### Dependencies
+
+If the project virtual environment is already available, inspect installed packages with:
+
 ```powershell
 .venv\Scripts\python.exe -m pip list
 ```
-The exact installed versions of core packages are pinned in `requirements.txt`.
 
-### 3. Raw Data
-The raw CDC BRFSS 2024 survey dataset archive resides at:
-```text
-data/raw/LLCP2024XPT.zip
-```
-* **Integrity:** SHA-256 verified and zip CRC checked.
-* The original archive must remain preserved in `data/raw/` and is excluded from version control.
-
----
-
-## Milestone Roadmap
-- [x] **Milestone 1:** Repository audit, environment verification, and baseline configuration.
-- [x] **Milestone 2:** Official CDC codebook & dataset metadata inspection.
-- [x] **Milestone 3:** Data quality assessment & exploratory data analysis (EDA).
-- [x] **Milestone 4:** Statistical analysis & survey-weighted knowledge discovery.
-- [x] **Milestone 5:** Evidence-based predictive target selection & task formulation.
-- [x] **Milestone 6:** Baseline and Improved machine learning model training & evaluation.
-- [x] **Milestone 7:** Model evaluation, fairness checks, and explainability (XAI).
-- [x] **Milestone 8 (Stages 1–3):** Interactive dashboard architecture, data precomputation, and zero-dependency standalone Plotly.js UI.
-- [x] **Milestone 8 (Stage 4):** Dashboard integration audit and final packaging.
-- [x] **Milestone 9:** Reproducibility verification, documentation, and final delivery.
-
----
-
-## Milestone 8: Interactive Healthcare Analytics Dashboard
-
-Milestone 8 delivers an academic single-page application (SPA) titled:
-**"Population Health Analytics & Explainable ML — CDC BRFSS 2024"**
-
-Built on the zero-dependency architecture approved in Stage 1, the dashboard consumes lightweight, precomputed JSON bundles (`dashboard/data/`, total 172 KB) and uses HTML5, CSS3, Vanilla JavaScript, and Plotly.js.
-
-### 1. Dashboard Structure & Features
-* **Section 1: Overview & Scope:** Cohort dimensions ($N = 452,464$), chronic condition feasibility assessment, champion model definition, methodology flow diagram, and prominent public health disclaimers.
-* **Section 2: Population Health Explorer:** Interactive demographic and health construct selector (12 variables) supporting both unweighted sample counts and survey-weighted US population percentages, continuous risk factor summaries, and multivariable odds ratios.
-* **Section 3: Model Performance:** Cross-architecture comparison of 4 supervised models, validation ROC, Precision-Recall, and Calibration deciles, plus final holdout test evaluation table ($N = 67,870$).
-* **Section 4: Threshold Analysis:** Interactive threshold exploration slider ($\tau \in [0.02, 0.65]$) with real-time 2x2 confusion matrix updates, compared side-by-side with the immutable locked operational cutoff ($\tau = 0.080$).
-* **Section 5: Explainable AI (XAI):** Global grouped permutation importance (38 original predictors), transformed indicator ranking, unscaled partial dependence profiles (Age, Physical Health Days, BMI), and 4 representative validation case archetypes (TP, FP, TN, FN) with local directional attributions ($\Delta p$) and Ridge surrogate weights ($R^2 > 0.85$).
-* **Section 6: Limitations & Responsible Use:** Comprehensive guardrails detailing cross-sectional surveillance boundaries, lack of prospective validation, and strict prohibition against individual clinical diagnosis or symptom checking.
-
-### 2. How to Launch the Dashboard Locally
-
-Run Python's built-in HTTP server using the project virtual environment:
+The project dependency pins are recorded in `requirements.txt`. To create a new environment from the repository root, if the required Python version is installed:
 
 ```powershell
-# Recommended: Serve from dashboard directory
-.venv\Scripts\python.exe -m http.server 8501 --directory dashboard
-# Open in browser: http://localhost:8501/
+py -3.13 -m venv .venv
+.venv\Scripts\python.exe -m pip install --upgrade pip
+.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Alternatively, from the repository root:
-```powershell
-# Alternative: Serve from project root
-.venv\Scripts\python.exe -m http.server 8501
-# Open in browser: http://localhost:8501/dashboard/
-```
+Some analyses may require the raw BRFSS archive and local intermediate or model artifacts that are not committed to Git. Download the official dataset from the CDC link above and follow the project's configuration and documentation before attempting a full pipeline rerun.
 
-> **Network Note:** Plotly.js is loaded via CDN (`https://cdn.plot.ly/plotly-2.35.2.min.js`). An active internet connection is required to fetch the Plotly library for chart rendering. All underlying data bundles and styling are hosted locally with zero external package dependencies.
+## Reproducibility and Testing
 
-### 3. How to Run Dashboard Tests
+The project uses configuration files, modular source code, notebooks, generated result artifacts, and automated tests to support reproducibility.
+
+Run the test suite from the project root:
+
 ```powershell
 .venv\Scripts\python.exe -m unittest discover tests -v
 ```
+
+**Update this section with the latest verified test count** after running the command locally. Avoid hard-coding a count in multiple sections of the README unless it is refreshed whenever tests change.
+
+For reproducibility, preserve the documented split seed, use the same target definition and preprocessing path, and ensure that model selection and explanation development do not use the final holdout test partition.
+
+## Project Roadmap
+
+The existing milestone roadmap is:
+
+- [x] **Milestone 1:** Repository audit, environment verification, and baseline configuration.
+- [x] **Milestone 2:** Official CDC codebook and dataset metadata inspection.
+- [x] **Milestone 3:** Data quality assessment and exploratory data analysis.
+- [x] **Milestone 4:** Statistical analysis and survey-weighted knowledge discovery.
+- [x] **Milestone 5:** Evidence-based predictive target selection and task formulation.
+- [x] **Milestone 6:** Baseline and improved model training and evaluation.
+- [x] **Milestone 7:** Model evaluation, fairness checks, and explainability.
+- [x] **Milestone 8 (Stages 1–3):** Dashboard architecture, data precomputation, and interface implementation.
+- [x] **Milestone 8 (Stage 4):** Dashboard integration audit and final packaging.
+- [x] **Milestone 9:** Reproducibility verification, documentation, and final delivery.
+
+Only mark the remaining milestones complete after their acceptance checks have been run and the results recorded.
+
+## Limitations and Responsible Use
+
+- **Self-reported outcome:** `_MICHD` is constructed from self-reported survey responses and is not a clinically adjudicated diagnosis.
+- **Cross-sectional design:** the analysis does not establish temporal ordering or causal relationships.
+- **Survey design:** survey weights and design variables matter for population inference. The project reports weighted summaries where implemented, but the reported model metrics are unweighted; full complex-survey variance estimation for all analyses is not claimed here.
+- **Class imbalance:** precision, recall, specificity, NPV, PR-AUC, and the threshold must be considered together. The chosen threshold is not a medical decision threshold.
+- **Generalizability:** performance on this held-out partition does not establish external, prospective, or clinical validation.
+- **Model explanations:** permutation importance, partial dependence, and local surrogate explanations describe aspects of the fitted model. They do not prove causation or that changing a predictor would change disease risk.
+- **False positives and false negatives:** both occur at the chosen threshold. The model must not be used as a substitute for professional clinical assessment.
+- **Reproducibility dependencies:** raw data and some local artifacts are not tracked in Git and may need to be acquired or generated separately.
+
+## Data Source
+
+Centers for Disease Control and Prevention (CDC). **Behavioral Risk Factor Surveillance System (BRFSS): Annual Survey Data, 2024.**
+
+Official source and documentation: https://www.cdc.gov/brfss/annual_data/annual_2024.html
+
+---
+
+*This repository is an academic healthcare analytics project. It is intended for research and educational exploration, not for diagnosis, treatment, or individual-level clinical decision-making.*

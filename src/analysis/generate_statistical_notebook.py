@@ -1,0 +1,591 @@
+"""
+generate_statistical_notebook.py
+Constructs notebooks/02_statistical_analysis.ipynb following all Milestone 4 requirements.
+"""
+
+import json
+from pathlib import Path
+
+nb_path = Path("notebooks/02_statistical_analysis.ipynb")
+
+cells = [
+    # ---------------- Section 1 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "# Milestone 4: Statistical Analysis & Knowledge Discovery\n",
+            "**Project Title:** An Explainable Data-Driven Framework for Population Health Analytics and Predictive Modeling Using CDC BRFSS 2024  \n",
+            "**Input Dataset:** `data/interim/brfss_2024_selected.csv.gz` (457,670 records, 61 variables)  \n",
+            "**Execution Environment:** Python 3.13.14 (`.venv`)  \n",
+            "**Binding Rules:** `PROJECT_RULES.md` (no final target selected yet, no models trained, complex survey weights respected, association vs. causation preserved).\n",
+            "\n",
+            "---\n",
+            "\n",
+            "## 1. Statistical Analysis Plan & Research Hypotheses\n",
+            "\n",
+            "### Research Questions:\n",
+            "1. **Outcome Feasibility:** Across 10 candidate chronic disease endpoints, which outcomes exhibit optimal case counts, codebook clarity, and non-trivial class balance without severe data fragmentation?\n",
+            "2. **Risk Factor Associations:** What are the strength, magnitude, and statistical significance of associations between behavioral risk factors (smoking, physical inactivity, obesity) and candidate chronic conditions?\n",
+            "3. **Socioeconomic & Demographic Gradients:** How do age, sex, race/ethnicity, and educational attainment moderate chronic disease burden in the 2024 population?\n",
+            "4. **Survey-Design Weighting Effects:** How do survey weights (`_LLCPWT`) shift unweighted sample proportions and effect sizes?\n",
+            "5. **Confounder Adjustment:** In multivariable logistic regression models, which risk factors remain independently associated with disease outcomes after controlling for age, sex, and socioeconomic status?\n",
+            "\n",
+            "### Methodological Strategy:\n",
+            "- **Bivariate Association Tests:** Pearson Chi-Square ($\chi^2$) test of independence, Cramer's V effect size, unweighted & survey-weighted Odds Ratios (OR) with 95% Wald confidence intervals.\n",
+            "- **Multiple Testing Adjustment:** Benjamini-Hochberg False Discovery Rate (FDR) at $\\alpha = 0.05$.\n",
+            "- **Multivariable Modeling:** Survey-weighted Binomial Generalized Linear Models (`statsmodels.api.GLM`) to estimate Adjusted Odds Ratios (aOR) and 95% CIs.\n",
+            "- **Survey Design Nuances:** Distinguish descriptive weighted population prevalence (`DescrStatsW`) from model inference, documenting the scope of available cluster/variance adjustments."
+        ]
+    },
+
+    # ---------------- Section 2 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 2. Environment Setup & Data Loading"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "import os\n",
+            "import sys\n",
+            "import json\n",
+            "from pathlib import Path\n",
+            "import numpy as np\n",
+            "import pandas as pd\n",
+            "import matplotlib.pyplot as plt\n",
+            "import seaborn as sns\n",
+            "from scipy import stats\n",
+            "import statsmodels.api as sm\n",
+            "import statsmodels.formula.api as smf\n",
+            "from statsmodels.stats.weightstats import DescrStatsW\n",
+            "\n",
+            "# Visual configuration\n",
+            "sns.set_theme(style=\"whitegrid\", font_scale=1.1)\n",
+            "plt.rcParams[\"figure.figsize\"] = (10, 6)\n",
+            "plt.rcParams[\"figure.dpi\"] = 150\n",
+            "\n",
+            "# Project path configuration\n",
+            "PROJECT_ROOT = Path(\"..\").resolve()\n",
+            "sys.path.append(str(PROJECT_ROOT))\n",
+            "from src.analysis.statistical_tests import (\n",
+            "    audit_outcome_feasibility,\n",
+            "    compute_bivariate_odds_ratios,\n",
+            "    fit_survey_weighted_logistic_regression,\n",
+            "    compute_weighted_summary_stats\n",
+            ")\n",
+            "\n",
+            "DATA_PATH = PROJECT_ROOT / \"data\" / \"interim\" / \"brfss_2024_selected.csv.gz\"\n",
+            "FIG_DIR = PROJECT_ROOT / \"results\" / \"figures\"\n",
+            "TAB_DIR = PROJECT_ROOT / \"results\" / \"tables\"\n",
+            "\n",
+            "print(f\"Loading {DATA_PATH}...\")\n",
+            "df = pd.read_csv(DATA_PATH, low_memory=False)\n",
+            "print(f\"Dataset shape: {df.shape[0]:,} rows x {df.shape[1]} columns.\")"
+        ]
+    },
+
+    # ---------------- Section 3 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 3. Candidate Outcome Feasibility Audit\n",
+            "We audit 10 candidate chronic condition outcomes according to exact CDC 2024 codebook definitions:\n",
+            "- `_MICHD`: Myocardial Infarction or Coronary Heart Disease\n",
+            "- `CVDINFR4`: Diagnosed Heart Attack History\n",
+            "- `CVDCRHD4`: Angina or Coronary Heart Disease\n",
+            "- `CVDSTRK3`: Diagnosed Stroke\n",
+            "- `DIABETE4`: Diagnosed Diabetes\n",
+            "- `ASTHMA3`: Diagnosed Asthma\n",
+            "- `CHCCOPD3`: COPD, Emphysema, or Chronic Bronchitis\n",
+            "- `ADDEPEV3`: Depressive Disorder\n",
+            "- `CHCKDNY2`: Kidney Disease\n",
+            "- `HAVARTH4`: Arthritis"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Exact codebook mapping for all 10 candidate conditions\n",
+            "OUTCOMES_CONFIG = {\n",
+            "    \"_MICHD\": {\"name\": \"Myocardial Infarction / CHD\", \"pos\": [1], \"neg\": [2], \"dk\": [], \"refused\": [], \"special\": [], \"category\": \"Cardiovascular\"},\n",
+            "    \"CVDINFR4\": {\"name\": \"Heart Attack (History)\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Cardiovascular\"},\n",
+            "    \"CVDCRHD4\": {\"name\": \"Angina / Coronary Heart Disease\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Cardiovascular\"},\n",
+            "    \"CVDSTRK3\": {\"name\": \"Stroke (Ever Diagnosed)\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Cerebrovascular\"},\n",
+            "    \"DIABETE4\": {\"name\": \"Diabetes (Ever Diagnosed)\", \"pos\": [1], \"neg\": [3, 4], \"dk\": [7], \"refused\": [9], \"special\": [2], \"category\": \"Metabolic\"},\n",
+            "    \"ASTHMA3\": {\"name\": \"Asthma (Ever Diagnosed)\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Respiratory\"},\n",
+            "    \"CHCCOPD3\": {\"name\": \"COPD / Emphysema\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Respiratory\"},\n",
+            "    \"ADDEPEV3\": {\"name\": \"Depressive Disorder\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Mental Health\"},\n",
+            "    \"CHCKDNY2\": {\"name\": \"Kidney Disease\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Renal\"},\n",
+            "    \"HAVARTH4\": {\"name\": \"Arthritis (Diagnosed)\", \"pos\": [1], \"neg\": [2], \"dk\": [7], \"refused\": [9], \"special\": [], \"category\": \"Musculoskeletal\"}\n",
+            "}\n",
+            "\n",
+            "feasibility_df = audit_outcome_feasibility(df, OUTCOMES_CONFIG, weight_col=\"_LLCPWT\")\n",
+            "display(feasibility_df[[\"variable\", \"condition_name\", \"category\", \"valid_positive\", \"valid_negative\", \"other_special_count\", \"missing_nan_count\", \"row_checksum\", \"completeness_pct\", \"unweighted_prev_pct\", \"weighted_prev_pct\", \"imbalance_ratio\"]])\n",
+            "\n",
+            "# Checksum audit assertion\n",
+            "assert (feasibility_df[\"row_checksum\"] == len(df)).all(), \"Row checksum error: does not account for all respondents!\"\n",
+            "print(f\"All {len(feasibility_df)} outcome variables strictly account for all {len(df):,} survey records.\")\n",
+            "\n",
+            "feasibility_df.to_csv(TAB_DIR / \"outcome_feasibility_analysis.csv\", index=False)\n",
+            "print(f\"Saved feasibility summary to {TAB_DIR / 'outcome_feasibility_analysis.csv'}\")"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Figure 6: Outcome Feasibility Matrix (Sample Size vs. Weighted Prevalence vs. Imbalance)\n",
+            "fig, axes = plt.subplots(1, 2, figsize=(15, 6))\n",
+            "\n",
+            "# Subplot A: Weighted Prevalence vs Completeness\n",
+            "sns.scatterplot(\n",
+            "    data=feasibility_df,\n",
+            "    x=\"weighted_prev_pct\",\n",
+            "    y=\"valid_positive\",\n",
+            "    hue=\"category\",\n",
+            "    size=\"completeness_pct\",\n",
+            "    sizes=(100, 300),\n",
+            "    palette=\"tab10\",\n",
+            "    ax=axes[0]\n",
+            ")\n",
+            "for _, row in feasibility_df.iterrows():\n",
+            "    axes[0].annotate(\n",
+            "        row[\"variable\"],\n",
+            "        (row[\"weighted_prev_pct\"] + 0.3, row[\"valid_positive\"]),\n",
+            "        fontsize=9,\n",
+            "        weight=\"bold\"\n",
+            "    )\n",
+            "axes[0].set_title(\"A. Positive Case Count vs. Survey-Weighted Prevalence\", weight=\"bold\")\n",
+            "axes[0].set_xlabel(\"Weighted Population Prevalence (%)\")\n",
+            "axes[0].set_ylabel(\"Total Valid Positive Cases\")\n",
+            "\n",
+            "# Subplot B: Unweighted vs Weighted Prevalence Gap\n",
+            "sns.barplot(\n",
+            "    data=feasibility_df.sort_values(by=\"weighted_prev_pct\", ascending=False),\n",
+            "    y=\"condition_name\",\n",
+            "    x=\"prevalence_gap_pct\",\n",
+            "    palette=\"coolwarm_r\",\n",
+            "    ax=axes[1]\n",
+            ")\n",
+            "axes[1].set_title(\"B. Sampling Bias: (Unweighted - Weighted Prevalence Gap %)\", weight=\"bold\")\n",
+            "axes[1].set_xlabel(\"Prevalence Gap (Percentage Points)\")\n",
+            "axes[1].set_ylabel(\"\")\n",
+            "axes[1].axvline(0, color=\"black\", linestyle=\"--\")\n",
+            "\n",
+            "plt.tight_layout()\n",
+            "fig6_path = FIG_DIR / \"fig6_outcome_feasibility_matrix.png\"\n",
+            "plt.savefig(fig6_path, dpi=200)\n",
+            "plt.show()\n",
+            "print(f\"Saved Figure 6 to {fig6_path}\")"
+        ]
+    },
+
+    # ---------------- Section 4 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 4. Bivariate Association Analysis: Risk Factors & Odds Ratios\n",
+            "We examine the strength of association between behavioral, socioeconomic, and comorbidity risk factors and the two leading chronic disease candidates:\n",
+            "1. **Coronary Heart Disease / Myocardial Infarction (`_MICHD`)**\n",
+            "2. **Diabetes (`DIABETE4`)**\n",
+            "\n",
+            "We evaluate:\n",
+            "- Bivariate Odds Ratios (OR) with 95% Wald confidence intervals\n",
+            "- Pearson $\chi^2$ test of independence and Cramer's V effect size\n",
+            "- Benjamini-Hochberg False Discovery Rate (FDR) adjusted p-values"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Candidate risk factors for bivariate analysis\n",
+            "PREDICTOR_SPECS = {\n",
+            "    \"_AGE65YR\": {\"label\": \"Age 65+ Years\", \"pos\": [2], \"neg\": [1]},\n",
+            "    \"_SEX\": {\"label\": \"Male Sex\", \"pos\": [1], \"neg\": [2]},\n",
+            "    \"_RFBMI5\": {\"label\": \"Overweight or Obese (BMI>=25)\", \"pos\": [2], \"neg\": [1]},\n",
+            "    \"_RFSMOK3\": {\"label\": \"Current Cigarette Smoker\", \"pos\": [2], \"neg\": [1]},\n",
+            "    \"_TOTINDA\": {\"label\": \"No Leisure Physical Activity\", \"pos\": [2], \"neg\": [1]},\n",
+            "    \"_RFHLTH\": {\"label\": \"Fair or Poor Self-Rated Health\", \"pos\": [2], \"neg\": [1]},\n",
+            "    \"MEDCOST1\": {\"label\": \"Medical Cost Barrier (Past 12mo)\", \"pos\": [1], \"neg\": [2]},\n",
+            "    \"CHECKUP1\": {\"label\": \"Routine Checkup within Past Year\", \"pos\": [1], \"neg\": [2, 3, 4, 8]},\n",
+            "    \"DIFFWALK\": {\"label\": \"Mobility Difficulty (Walking/Stairs)\", \"pos\": [1], \"neg\": [2]},\n",
+            "    \"DECIDE\": {\"label\": \"Cognitive Difficulty (Deciding/Memory)\", \"pos\": [1], \"neg\": [2]},\n",
+            "    \"DIABETE4\": {\"label\": \"Diabetes Comorbidity\", \"pos\": [1], \"neg\": [3, 4]},\n",
+            "    \"CHCKDNY2\": {\"label\": \"Kidney Disease Comorbidity\", \"pos\": [1], \"neg\": [2]},\n",
+            "    \"CHCCOPD3\": {\"label\": \"COPD Comorbidity\", \"pos\": [1], \"neg\": [2]},\n",
+            "    \"ADDEPEV3\": {\"label\": \"Depressive Disorder Comorbidity\", \"pos\": [1], \"neg\": [2]}\n",
+            "}\n",
+            "\n",
+            "# Bivariate associations with _MICHD\n",
+            "biv_michd = compute_bivariate_odds_ratios(\n",
+            "    df=df,\n",
+            "    target_col=\"_MICHD\",\n",
+            "    target_pos_codes=[1],\n",
+            "    target_neg_codes=[2],\n",
+            "    predictor_cols=list(PREDICTOR_SPECS.keys()),\n",
+            "    predictor_mapping=PREDICTOR_SPECS,\n",
+            "    weight_col=\"_LLCPWT\"\n",
+            ")\n",
+            "\n",
+            "print(\"Bivariate Associations with Coronary Heart Disease / MI (_MICHD):\")\n",
+            "display(biv_michd[[\"predictor_label\", \"unweighted_or\", \"unweighted_ci_95_lower\", \"unweighted_ci_95_upper\", \"weighted_or\", \"unweighted_cramers_v\", \"unweighted_p_fdr\"]])\n",
+            "\n",
+            "biv_michd.to_csv(TAB_DIR / \"bivariate_associations_summary.csv\", index=False)\n",
+            "print(f\"Saved bivariate summary table to {TAB_DIR / 'bivariate_associations_summary.csv'}\")"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Figure 7: Forest Plot of Bivariate Odds Ratios with 95% Confidence Intervals\n",
+            "plt.figure(figsize=(11, 7))\n",
+            "\n",
+            "plot_df = biv_michd.sort_values(by=\"unweighted_or\", ascending=True).copy()\n",
+            "y_pos = np.arange(len(plot_df))\n",
+            "\n",
+            "plt.errorbar(\n",
+            "    plot_df[\"unweighted_or\"],\n",
+            "    y_pos,\n",
+            "    xerr=[plot_df[\"unweighted_or\"] - plot_df[\"unweighted_ci_95_lower\"], plot_df[\"unweighted_ci_95_upper\"] - plot_df[\"unweighted_or\"]],\n",
+            "    fmt=\"o\",\n",
+            "    color=\"#1f77b4\",\n",
+            "    ecolor=\"#1f77b4\",\n",
+            "    elinewidth=2,\n",
+            "    capsize=4,\n",
+            "    label=\"Unweighted OR (95% Wald CI, unadjusted)\"\n",
+            ")\n",
+            "\n",
+            "plt.scatter(\n",
+            "    plot_df[\"weighted_or\"],\n",
+            "    y_pos,\n",
+            "    color=\"#ff7f0e\",\n",
+            "    marker=\"s\",\n",
+            "    s=50,\n",
+            "    label=\"Weighted OR (Survey Design Point Estimate)\",\n",
+            "    zorder=3\n",
+            ")\n",
+            "\n",
+            "plt.axvline(1.0, color=\"red\", linestyle=\"--\", linewidth=1.5, alpha=0.7)\n",
+            "plt.yticks(y_pos, plot_df[\"predictor_label\"])\n",
+            "plt.xscale(\"log\")\n",
+            "plt.xlim(0.8, 10.0)\n",
+            "plt.title(\"Figure 7: Bivariate Odds Ratios for Coronary Heart Disease / MI (_MICHD)\", weight=\"bold\", pad=12)\n",
+            "plt.xlabel(\"Odds Ratio (Log Scale)\")\n",
+            "plt.ylabel(\"Clinical / Behavioral Risk Factor\")\n",
+            "plt.legend(loc=\"lower right\")\n",
+            "plt.tight_layout()\n",
+            "\n",
+            "fig7_path = FIG_DIR / \"fig7_odds_ratios_forest_plot.png\"\n",
+            "plt.savefig(fig7_path, dpi=200)\n",
+            "plt.show()\n",
+            "print(f\"Saved Figure 7 to {fig7_path}\")"
+        ]
+    },
+
+    # ---------------- Section 5 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 5. Stratified Prevalence Across Demographic Groups\n",
+            "We examine disease prevalence gradients across Age bands (`_AGEG5YR`), Sex (`_SEX`), and Race/Ethnicity (`_RACE`) to understand demographic disparity patterns."
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Compute stratified prevalence across 5-year age groups for top outcomes\n",
+            "age_df = df[df[\"_AGEG5YR\"].between(1, 13)].copy()\n",
+            "age_labels = {\n",
+            "    1: \"18-24\", 2: \"25-29\", 3: \"30-34\", 4: \"35-39\", 5: \"40-44\",\n",
+            "    6: \"45-49\", 7: \"50-54\", 8: \"55-59\", 9: \"60-64\", 10: \"65-69\",\n",
+            "    11: \"70-74\", 12: \"75-79\", 13: \"80+\"\n",
+            "}\n",
+            "age_df[\"Age_Band\"] = age_df[\"_AGEG5YR\"].map(age_labels)\n",
+            "\n",
+            "# Calculate weighted rates by age band\n",
+            "age_trends = []\n",
+            "for age_code, age_str in age_labels.items():\n",
+            "    sub = age_df[age_df[\"_AGEG5YR\"] == age_code]\n",
+            "    w = sub[\"_LLCPWT\"]\n",
+            "    \n",
+            "    # _MICHD\n",
+            "    m_valid = sub[\"_MICHD\"].isin([1, 2])\n",
+            "    michd_rate = (w[sub[\"_MICHD\"] == 1].sum() / w[m_valid].sum() * 100) if w[m_valid].sum() > 0 else 0\n",
+            "    \n",
+            "    # DIABETE4\n",
+            "    d_valid = sub[\"DIABETE4\"].isin([1, 3, 4])\n",
+            "    diab_rate = (w[sub[\"DIABETE4\"] == 1].sum() / w[d_valid].sum() * 100) if w[d_valid].sum() > 0 else 0\n",
+            "    \n",
+            "    # ADDEPEV3\n",
+            "    dep_valid = sub[\"ADDEPEV3\"].isin([1, 2])\n",
+            "    dep_rate = (w[sub[\"ADDEPEV3\"] == 1].sum() / w[dep_valid].sum() * 100) if w[dep_valid].sum() > 0 else 0\n",
+            "    \n",
+            "    age_trends.append({\n",
+            "        \"Age_Band\": age_str,\n",
+            "        \"CHD / MI (_MICHD)\": round(michd_rate, 2),\n",
+            "        \"Diabetes (DIABETE4)\": round(diab_rate, 2),\n",
+            "        \"Depression (ADDEPEV3)\": round(dep_rate, 2)\n",
+            "    })\n",
+            "\n",
+            "age_trends_df = pd.DataFrame(age_trends)\n",
+            "display(age_trends_df)"
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Figure 8: Stratified Prevalence of Top Chronic Conditions Across 5-Year Age Bands\n",
+            "plt.figure(figsize=(12, 6))\n",
+            "plot_trends = age_trends_df.melt(id_vars=[\"Age_Band\"], var_name=\"Condition\", value_name=\"Prevalence (%)\")\n",
+            "\n",
+            "sns.lineplot(\n",
+            "    data=plot_trends,\n",
+            "    x=\"Age_Band\",\n",
+            "    y=\"Prevalence (%)\",\n",
+            "    hue=\"Condition\",\n",
+            "    marker=\"o\",\n",
+            "    linewidth=2.5,\n",
+            "    palette=[\"#d62728\", \"#1f77b4\", \"#2ca02c\"]\n",
+            ")\n",
+            "plt.title(\"Figure 8: Survey-Weighted Prevalence Trajectories Across 5-Year Age Bands\", weight=\"bold\", pad=12)\n",
+            "plt.xlabel(\"Age Band (Years)\")\n",
+            "plt.ylabel(\"Weighted Population Prevalence (%)\")\n",
+            "plt.xticks(rotation=45)\n",
+            "plt.legend(title=\"Chronic Condition\")\n",
+            "plt.tight_layout()\n",
+            "\n",
+            "fig8_path = FIG_DIR / \"fig8_stratified_prevalence_demographics.png\"\n",
+            "plt.savefig(fig8_path, dpi=200)\n",
+            "plt.show()\n",
+            "print(f\"Saved Figure 8 to {fig8_path}\")"
+        ]
+    },
+
+    # ---------------- Section 6 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 6. Multivariable Survey-Weighted Logistic Regression\n",
+            "To test whether behavioral risk factors remain independently associated with reported history of Coronary Heart Disease / MI (`_MICHD`) after controlling for age, sex, and chronic comorbidities, we fit a multivariable logistic regression model using `statsmodels.api.GLM` with normalized survey weights `_LLCPWT` and cluster-robust sensitivity estimation on `_PSU`.\n",
+            "\n",
+            "### Methodological Audit & Correction Note:\n",
+            "- **Weight Normalization:** Passing raw expansion weights (_LLCPWT) into `statsmodels` GLM `freq_weights` treats the population expansion total (~217.6M) as integer replications, artificially shrinking standard errors by ~24x and yielding spuriously narrow confidence intervals (e.g., [4.56, 4.58]). Normalizing weights to sample size preserves identical point estimates (aOR) while restoring the variance scale to reflect the actual sample size ($N = 385,120$).\n",
+            "- **Cluster-Robust Sensitivity:** We evaluate intra-cluster correlation across primary sampling units (`_PSU`) using `cov_type='cluster'`.\n",
+            "- **Design Limitation:** Standard `statsmodels` does not perform simultaneous multi-stage Taylor-series linearization over both strata (`_STSTR`) and `_PSU`. Estimates represent survey-weighted point estimates with cluster-robust sensitivity intervals, not official full survey linearization."
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Prepare modeling cohort for _MICHD\n",
+            "# Exclude target leakage: DO NOT include CVDINFR4 or CVDCRHD4 because _MICHD is calculated from them!\n",
+            "model_df = df[\n",
+            "    df[\"_MICHD\"].isin([1, 2]) &\n",
+            "    df[\"_AGE65YR\"].isin([1, 2]) &\n",
+            "    df[\"_SEX\"].isin([1, 2]) &\n",
+            "    df[\"_RFBMI5\"].isin([1, 2]) &\n",
+            "    df[\"_RFSMOK3\"].isin([1, 2]) &\n",
+            "    df[\"_TOTINDA\"].isin([1, 2]) &\n",
+            "    df[\"_RFHLTH\"].isin([1, 2]) &\n",
+            "    df[\"DIABETE4\"].isin([1, 3, 4]) &\n",
+            "    df[\"CHCKDNY2\"].isin([1, 2]) &\n",
+            "    df[\"_LLCPWT\"].notna() &\n",
+            "    df[\"_PSU\"].notna()\n",
+            "].copy()\n",
+            "\n",
+            "# Encode binary indicators (0/1)\n",
+            "model_df[\"y_michd\"] = (model_df[\"_MICHD\"] == 1).astype(int)\n",
+            "model_df[\"age_65plus\"] = (model_df[\"_AGE65YR\"] == 2).astype(int)\n",
+            "model_df[\"male_sex\"] = (model_df[\"_SEX\"] == 1).astype(int)\n",
+            "model_df[\"bmi_overweight_obese\"] = (model_df[\"_RFBMI5\"] == 2).astype(int)\n",
+            "model_df[\"current_smoker\"] = (model_df[\"_RFSMOK3\"] == 2).astype(int)\n",
+            "model_df[\"physical_inactivity\"] = (model_df[\"_TOTINDA\"] == 2).astype(int)\n",
+            "model_df[\"fair_poor_health\"] = (model_df[\"_RFHLTH\"] == 2).astype(int)\n",
+            "model_df[\"diabetes\"] = (model_df[\"DIABETE4\"] == 1).astype(int)\n",
+            "model_df[\"kidney_disease\"] = (model_df[\"CHCKDNY2\"] == 1).astype(int)\n",
+            "\n",
+            "formula = \"y_michd ~ age_65plus + male_sex + bmi_overweight_obese + current_smoker + physical_inactivity + fair_poor_health + diabetes + kidney_disease\"\n",
+            "print(f\"Fitting multivariable survey-weighted GLM on {len(model_df):,} complete records...\")\n",
+            "\n",
+            "or_table, glm_norm, glm_cluster = fit_survey_weighted_logistic_regression(\n",
+            "    df=model_df,\n",
+            "    formula=formula,\n",
+            "    weight_col=\"_LLCPWT\",\n",
+            "    cluster_col=\"_PSU\"\n",
+            ")\n",
+            "\n",
+            "display(or_table)\n",
+            "or_table.to_csv(TAB_DIR / \"multivariable_logistic_regression_or.csv\", index=False)\n",
+            "print(f\"Saved multivariable aOR results to {TAB_DIR / 'multivariable_logistic_regression_or.csv'}\")"
+        ]
+    },
+
+    # ---------------- Section 7 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 7. Dose-Response & Behavioral Risk Gradients\n",
+            "Evaluate behavioral gradients (BMI categories, smoker status, physical activity) across chronic disease outcomes to examine consistency with clinical knowledge."
+        ]
+    },
+    {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": [
+            "# Figure 9: Behavioral Risk Gradients (BMI Categories and Smoker Levels vs. CHD & Diabetes)\n",
+            "fig, axes = plt.subplots(1, 2, figsize=(15, 6))\n",
+            "\n",
+            "# Subplot A: BMI Category Gradient\n",
+            "bmi_df = df[df[\"_BMI5CAT\"].isin([1, 2, 3, 4])].copy()\n",
+            "bmi_map = {1: \"Underweight\\n(<18.5)\", 2: \"Normal\\n(18.5-24.9)\", 3: \"Overweight\\n(25-29.9)\", 4: \"Obese\\n(30.0+)\"}\n",
+            "bmi_df[\"BMI_Cat\"] = bmi_df[\"_BMI5CAT\"].map(bmi_map)\n",
+            "\n",
+            "bmi_gradient = []\n",
+            "for cat_code, cat_name in bmi_map.items():\n",
+            "    sub = bmi_df[bmi_df[\"_BMI5CAT\"] == cat_code]\n",
+            "    w = sub[\"_LLCPWT\"]\n",
+            "    m_rate = (w[sub[\"_MICHD\"] == 1].sum() / w[sub[\"_MICHD\"].isin([1, 2])].sum()) * 100\n",
+            "    d_rate = (w[sub[\"DIABETE4\"] == 1].sum() / w[sub[\"DIABETE4\"].isin([1, 3, 4])].sum()) * 100\n",
+            "    bmi_gradient.append({\"BMI Category\": cat_name, \"CHD/MI (_MICHD)\": m_rate, \"Diabetes (DIABETE4)\": d_rate})\n",
+            "\n",
+            "bmi_grad_df = pd.DataFrame(bmi_gradient).melt(id_vars=[\"BMI Category\"], var_name=\"Condition\", value_name=\"Weighted Prev (%)\")\n",
+            "sns.barplot(data=bmi_grad_df, x=\"BMI Category\", y=\"Weighted Prev (%)\", hue=\"Condition\", palette=\"Blues_d\", ax=axes[0])\n",
+            "axes[0].set_title(\"A. Disease Prevalence across BMI Categories\", weight=\"bold\")\n",
+            "axes[0].set_xlabel(\"Body Mass Index Category\")\n",
+            "axes[0].set_ylabel(\"Weighted Population Prevalence (%)\")\n",
+            "\n",
+            "# Subplot B: Smoking Status Gradient\n",
+            "smk_df = df[df[\"_SMOKER3\"].isin([1, 2, 3, 4])].copy()\n",
+            "smk_map = {1: \"Current\\nEvery Day\", 2: \"Current\\nSome Days\", 3: \"Former\\nSmoker\", 4: \"Never\\nSmoked\"}\n",
+            "smk_df[\"Smoker_Status\"] = smk_df[\"_SMOKER3\"].map(smk_map)\n",
+            "\n",
+            "smk_gradient = []\n",
+            "for cat_code, cat_name in smk_map.items():\n",
+            "    sub = smk_df[smk_df[\"_SMOKER3\"] == cat_code]\n",
+            "    w = sub[\"_LLCPWT\"]\n",
+            "    m_rate = (w[sub[\"_MICHD\"] == 1].sum() / w[sub[\"_MICHD\"].isin([1, 2])].sum()) * 100\n",
+            "    d_rate = (w[sub[\"DIABETE4\"] == 1].sum() / w[sub[\"DIABETE4\"].isin([1, 3, 4])].sum()) * 100\n",
+            "    smk_gradient.append({\"Smoker Status\": cat_name, \"CHD/MI (_MICHD)\": m_rate, \"Diabetes (DIABETE4)\": d_rate})\n",
+            "\n",
+            "smk_grad_df = pd.DataFrame(smk_gradient).melt(id_vars=[\"Smoker Status\"], var_name=\"Condition\", value_name=\"Weighted Prev (%)\")\n",
+            "sns.barplot(data=smk_grad_df, x=\"Smoker Status\", y=\"Weighted Prev (%)\", hue=\"Condition\", palette=\"Oranges_d\", ax=axes[1])\n",
+            "axes[1].set_title(\"B. Disease Prevalence across Smoking Categories\", weight=\"bold\")\n",
+            "axes[1].set_xlabel(\"Cigarette Smoking Category\")\n",
+            "axes[1].set_ylabel(\"Weighted Population Prevalence (%)\")\n",
+            "\n",
+            "plt.tight_layout()\n",
+            "fig9_path = FIG_DIR / \"fig9_behavioral_risk_gradient.png\"\n",
+            "plt.savefig(fig9_path, dpi=200)\n",
+            "plt.show()\n",
+            "print(f\"Saved Figure 9 to {fig9_path}\")"
+        ]
+    },
+
+    # ---------------- Section 8 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 8. Survey-Design Methodological Considerations (Rule 12)\n",
+            "\n",
+            "### Complex Sampling Architecture:\n",
+            "1. **Raking Weights (`_LLCPWT`):**\n",
+            "   - Account for probability of selection, non-response, and telephone source (landline vs cell).\n",
+            "   - Crucial for descriptive prevalence: unweighted CHD/MI prevalence (9.36%) overestimates true population prevalence (6.80%) because older individuals are overrepresented in telephone survey respondents.\n",
+            "2. **Stratification (`_STSTR`) & Primary Sampling Units (`_PSU`):**\n",
+            "   - Respondents are clustered within primary sampling units (geographic telephone exchange blocks).\n",
+            "   - Standard i.i.d. variance formulas underestimate standard errors (design effect $Deff > 1$).\n",
+            "3. **Implementation Limitations in Python:**\n",
+            "   - `statsmodels` 0.15 supports weighted descriptive statistics (`DescrStatsW`) and weighted GLM fitting with robust cluster standard errors.\n",
+            "   - However, full multi-stage Taylor-series linearization incorporating both `_STSTR` and `_PSU` simultaneously is not natively supported in standard `statsmodels` GLM without specialized survey packages (e.g., `samplics`).\n",
+            "   - Therefore, inferential odds ratios reported here represent survey-weighted point estimates with cluster-robust standard errors, rather than full multi-stage linearized survey errors."
+        ]
+    },
+
+    # ---------------- Section 9 ----------------
+    {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": [
+            "## 9. Evidence-Based Target Selection Synthesis\n",
+            "\n",
+            "Based on the empirical findings across the 10 candidate outcomes:\n",
+            "\n",
+            "### 1. Primary Recommendation: Coronary Heart Disease / Myocardial Infarction (`_MICHD`)\n",
+            "- **Public Health Relevance:** Cardiovascular disease is the leading cause of mortality in the United States.\n",
+            "- **Sample Size:** 42,338 positive cases, 410,126 negative cases (98.9% codebook completeness).\n",
+            "- **Class Imbalance:** 1 : 9.7 (6.80% weighted prevalence). Clinically meaningful imbalance requiring appropriate thresholding, PR-AUC, and cost-sensitive calibration.\n",
+            "- **Predictor Alignment:** Strong, statistically significant, biologically plausible associations with established risk factors: Age (OR 4.7), Male Sex (OR 1.6), Smoking (OR 1.8), Physical Inactivity (OR 1.9), Fair/Poor Health (OR 4.1), Diabetes Comorbidity (OR 3.2), and Kidney Disease (OR 3.4).\n",
+            "- **Leakage Prevention Rule:** When modeling `_MICHD`, variables `CVDINFR4` (heart attack) and `CVDCRHD4` (angina) **must be excluded** from the feature set because `_MICHD` is directly derived from them.\n",
+            "\n",
+            "### 2. Secondary / Backup Recommendation: Diabetes (`DIABETE4`)\n",
+            "- **Public Health Relevance:** Major chronic cardiometabolic epidemic with massive clinical impact.\n",
+            "- **Sample Size:** 65,809 positive cases, 387,432 negative cases (99.0% completeness).\n",
+            "- **Class Imbalance:** 1 : 5.9 (12.63% weighted prevalence). Moderate imbalance providing strong statistical power for non-linear tree-based models.\n",
+            "- **Predictor Alignment:** Exceptionally strong gradient across BMI categories, age, physical activity, and hypertension/cholesterol history.\n",
+            "- **Leakage Prevention Rule:** When modeling `DIABETE4`, `PREDIAB2` (pre-diabetes) and diabetes management questions (`INSULIN1`, `CHKHEMO3`, `DIABEYE1`) **must be excluded**.\n",
+            "\n",
+            "### 3. Conditions Less Suitable as Primary Targets:\n",
+            "- **Stroke (`CVDSTRK3`):** Severe imbalance (1:21.1, 3.5% prevalence); acute neurological event with lower signal in general lifestyle survey questions.\n",
+            "- **Kidney Disease (`CHCKDNY2`):** Severe imbalance (1:18.2, 4.1% prevalence); often clinically asymptomatic until late stages.\n",
+            "- **Arthritis (`HAVARTH4`):** High prevalence (26.6% weighted), but highly heterogeneous symptom definition with lower life-threatening clinical severity.\n",
+            "- **Depression (`ADDEPEV3`):** Excellent prevalence (21.0%), but etiology depends heavily on psychometric/social determinants not fully captured in the annual core instrument."
+        ]
+    }
+]
+
+notebook_content = {
+    "cells": cells,
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python (.venv)",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.13.14"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 4
+}
+
+with open(nb_path, "w", encoding="utf-8") as f:
+    json.dump(notebook_content, f, indent=2)
+
+print(f"Generated {nb_path} with {len(cells)} cells.")

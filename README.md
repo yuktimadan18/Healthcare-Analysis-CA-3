@@ -120,8 +120,8 @@ data/raw/LLCP2024XPT.zip
 - [x] **Milestone 6:** Baseline and Improved machine learning model training & evaluation.
 - [x] **Milestone 7:** Model evaluation, fairness checks, and explainability (XAI).
 - [x] **Milestone 8 (Stages 1–3):** Interactive dashboard architecture, data precomputation, and zero-dependency standalone Plotly.js UI.
-- [ ] **Milestone 8 (Stage 4):** Dashboard integration audit and final packaging.
-- [ ] **Milestone 9:** Reproducibility verification, documentation, and final delivery.
+- [x] **Milestone 8 (Stage 4):** Dashboard integration audit and final packaging.
+- [x] **Milestone 9:** Reproducibility verification, documentation, and final delivery.
 
 ---
 

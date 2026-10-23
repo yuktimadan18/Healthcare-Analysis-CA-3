@@ -1,0 +1,23 @@
+# Core data processing and numerical computing
+numpy==2.5.4
+pandas==3.0.6
+scipy==1.18.1
+
+# Survey data ingestion (SAS XPT format)
+pyreadstat==1.3.6
+
+# Statistical analysis and machine learning
+statsmodels==0.15.0
+scikit-learn==1.9.1
+joblib==1.6.0
+
+# Data visualization
+matplotlib==3.11.2
+seaborn==0.13.2
+plotly==7.1.0
+
+# Interactive notebooks and development
+ipykernel==7.4.0
+jupyterlab==4.6.4
+notebook==7.6.3
+openpyxl==3.1.5

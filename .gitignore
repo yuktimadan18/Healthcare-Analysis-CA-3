@@ -1,0 +1,99 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Environment secrets and credentials
+.env
+.env.*
+!.env.example
+*.key
+*.secret
+*.pem
+
+# Data directories and data files (Rule 8: Never commit raw/large datasets)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Catch-all for large survey and binary datasets
+*.zip
+*.tar.gz
+*.xpt
+*.XPT
+data/**/*.csv
+data/**/*.csv.gz
+*.parquet
+*.feather
+*.pkl
+*.joblib
+
+# Models and checkpoints
+models/*.pkl
+models/*.joblib
+models/*.onnx
+models/*.pt
+models/*.bin
+!models/.gitkeep
+
+# Operating System specific
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDE and Editor files (allow .vscode/settings.json for workspace consistency)
+.vscode/*
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Trained model artifacts
+*.joblib
+
+# Temporary inventories and test caches
+project_inventory.txt
+data_inventory.txt
+.pytest_cache/

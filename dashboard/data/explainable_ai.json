@@ -1,0 +1,2423 @@
+{
+  "global_grouped_importance": [
+    {
+      "rank": 1,
+      "source_variable": "_AGE80",
+      "feature_type": "numeric",
+      "num_transformed_columns": 1,
+      "mean_pr_auc_drop": 0.077214,
+      "std_pr_auc_drop": 0.003596,
+      "mean_roc_auc_drop": 0.093609,
+      "std_roc_auc_drop": 0.003326
+    },
+    {
+      "rank": 2,
+      "source_variable": "GENHLTH",
+      "feature_type": "categorical",
+      "num_transformed_columns": 8,
+      "mean_pr_auc_drop": 0.04338,
+      "std_pr_auc_drop": 0.002198,
+      "mean_roc_auc_drop": 0.020937,
+      "std_roc_auc_drop": 0.000788
+    },
+    {
+      "rank": 3,
+      "source_variable": "_SEX",
+      "feature_type": "categorical",
+      "num_transformed_columns": 2,
+      "mean_pr_auc_drop": 0.038017,
+      "std_pr_auc_drop": 0.002061,
+      "mean_roc_auc_drop": 0.020163,
+      "std_roc_auc_drop": 0.000929
+    },
+    {
+      "rank": 4,
+      "source_variable": "CVDSTRK3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.030589,
+      "std_pr_auc_drop": 0.000706,
+      "mean_roc_auc_drop": 0.0128,
+      "std_roc_auc_drop": 0.000366
+    },
+    {
+      "rank": 5,
+      "source_variable": "PERSDOC3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 6,
+      "mean_pr_auc_drop": 0.012699,
+      "std_pr_auc_drop": 0.000931,
+      "mean_roc_auc_drop": 0.007135,
+      "std_roc_auc_drop": 0.000232
+    },
+    {
+      "rank": 6,
+      "source_variable": "DIABETE4",
+      "feature_type": "categorical",
+      "num_transformed_columns": 7,
+      "mean_pr_auc_drop": 0.009585,
+      "std_pr_auc_drop": 0.000902,
+      "mean_roc_auc_drop": 0.003729,
+      "std_roc_auc_drop": 0.000244
+    },
+    {
+      "rank": 7,
+      "source_variable": "CHCKDNY2",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.008759,
+      "std_pr_auc_drop": 0.000546,
+      "mean_roc_auc_drop": 0.002115,
+      "std_roc_auc_drop": 0.000227
+    },
+    {
+      "rank": 8,
+      "source_variable": "CHCCOPD3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.007772,
+      "std_pr_auc_drop": 0.000814,
+      "mean_roc_auc_drop": 0.002993,
+      "std_roc_auc_drop": 0.000212
+    },
+    {
+      "rank": 9,
+      "source_variable": "_RACE",
+      "feature_type": "categorical",
+      "num_transformed_columns": 9,
+      "mean_pr_auc_drop": 0.004422,
+      "std_pr_auc_drop": 0.000674,
+      "mean_roc_auc_drop": 0.001554,
+      "std_roc_auc_drop": 0.000201
+    },
+    {
+      "rank": 10,
+      "source_variable": "_SMOKER3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.004382,
+      "std_pr_auc_drop": 0.000688,
+      "mean_roc_auc_drop": 0.002302,
+      "std_roc_auc_drop": 0.000232
+    },
+    {
+      "rank": 11,
+      "source_variable": "HAVARTH4",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.002462,
+      "std_pr_auc_drop": 0.00098,
+      "mean_roc_auc_drop": 0.001451,
+      "std_roc_auc_drop": 0.000322
+    },
+    {
+      "rank": 12,
+      "source_variable": "EMPLOY1",
+      "feature_type": "categorical",
+      "num_transformed_columns": 10,
+      "mean_pr_auc_drop": 0.002013,
+      "std_pr_auc_drop": 0.000436,
+      "mean_roc_auc_drop": 0.000637,
+      "std_roc_auc_drop": 0.000112
+    },
+    {
+      "rank": 13,
+      "source_variable": "CHECKUP1",
+      "feature_type": "categorical",
+      "num_transformed_columns": 7,
+      "mean_pr_auc_drop": 0.001655,
+      "std_pr_auc_drop": 0.000363,
+      "mean_roc_auc_drop": 0.001181,
+      "std_roc_auc_drop": 0.000259
+    },
+    {
+      "rank": 14,
+      "source_variable": "DIFFWALK",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.001504,
+      "std_pr_auc_drop": 0.000408,
+      "mean_roc_auc_drop": 0.00089,
+      "std_roc_auc_drop": 5.8e-05
+    },
+    {
+      "rank": 15,
+      "source_variable": "MARITAL",
+      "feature_type": "categorical",
+      "num_transformed_columns": 8,
+      "mean_pr_auc_drop": 0.001475,
+      "std_pr_auc_drop": 0.000708,
+      "mean_roc_auc_drop": 0.000644,
+      "std_roc_auc_drop": 0.000179
+    },
+    {
+      "rank": 16,
+      "source_variable": "MEDCOST1",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.00124,
+      "std_pr_auc_drop": 0.000576,
+      "mean_roc_auc_drop": 0.0006,
+      "std_roc_auc_drop": 0.000155
+    },
+    {
+      "rank": 17,
+      "source_variable": "PHYSHLTH_DAYS",
+      "feature_type": "numeric",
+      "num_transformed_columns": 1,
+      "mean_pr_auc_drop": 0.00116,
+      "std_pr_auc_drop": 0.00049,
+      "mean_roc_auc_drop": 0.000703,
+      "std_roc_auc_drop": 0.00017
+    },
+    {
+      "rank": 18,
+      "source_variable": "_AGEG5YR",
+      "feature_type": "categorical",
+      "num_transformed_columns": 14,
+      "mean_pr_auc_drop": 0.001123,
+      "std_pr_auc_drop": 0.000285,
+      "mean_roc_auc_drop": 0.000323,
+      "std_roc_auc_drop": 7.2e-05
+    },
+    {
+      "rank": 19,
+      "source_variable": "DIFFDRES",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.001117,
+      "std_pr_auc_drop": 0.000252,
+      "mean_roc_auc_drop": 0.000148,
+      "std_roc_auc_drop": 4.7e-05
+    },
+    {
+      "rank": 20,
+      "source_variable": "BMI_NUMERIC",
+      "feature_type": "numeric",
+      "num_transformed_columns": 1,
+      "mean_pr_auc_drop": 0.001073,
+      "std_pr_auc_drop": 0.000493,
+      "mean_roc_auc_drop": 0.000242,
+      "std_roc_auc_drop": 9.8e-05
+    },
+    {
+      "rank": 21,
+      "source_variable": "DEAF",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.000969,
+      "std_pr_auc_drop": 0.000463,
+      "mean_roc_auc_drop": 0.000349,
+      "std_roc_auc_drop": 9.3e-05
+    },
+    {
+      "rank": 22,
+      "source_variable": "_INCOMG1",
+      "feature_type": "categorical",
+      "num_transformed_columns": 8,
+      "mean_pr_auc_drop": 0.000758,
+      "std_pr_auc_drop": 0.000468,
+      "mean_roc_auc_drop": 0.000439,
+      "std_roc_auc_drop": 0.000136
+    },
+    {
+      "rank": 23,
+      "source_variable": "BLIND",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.000676,
+      "std_pr_auc_drop": 0.000151,
+      "mean_roc_auc_drop": 0.000195,
+      "std_roc_auc_drop": 6.6e-05
+    },
+    {
+      "rank": 24,
+      "source_variable": "ADDEPEV3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.000583,
+      "std_pr_auc_drop": 0.000164,
+      "mean_roc_auc_drop": 0.000369,
+      "std_roc_auc_drop": 0.000113
+    },
+    {
+      "rank": 25,
+      "source_variable": "CHCOCNC1",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.000527,
+      "std_pr_auc_drop": 0.000259,
+      "mean_roc_auc_drop": 0.000133,
+      "std_roc_auc_drop": 5.8e-05
+    },
+    {
+      "rank": 26,
+      "source_variable": "_METSTAT",
+      "feature_type": "categorical",
+      "num_transformed_columns": 3,
+      "mean_pr_auc_drop": 0.000515,
+      "std_pr_auc_drop": 0.000324,
+      "mean_roc_auc_drop": 0.000206,
+      "std_roc_auc_drop": 8e-05
+    },
+    {
+      "rank": 27,
+      "source_variable": "_EDUCAG",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.000375,
+      "std_pr_auc_drop": 0.000336,
+      "mean_roc_auc_drop": 0.000201,
+      "std_roc_auc_drop": 6.7e-05
+    },
+    {
+      "rank": 28,
+      "source_variable": "CHCSCNC1",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 0.000243,
+      "std_pr_auc_drop": 0.000102,
+      "mean_roc_auc_drop": 0.000139,
+      "std_roc_auc_drop": 9.7e-05
+    },
+    {
+      "rank": 29,
+      "source_variable": "_TOTINDA",
+      "feature_type": "categorical",
+      "num_transformed_columns": 3,
+      "mean_pr_auc_drop": 0.000107,
+      "std_pr_auc_drop": 0.0001,
+      "mean_roc_auc_drop": 1.8e-05,
+      "std_roc_auc_drop": 1.5e-05
+    },
+    {
+      "rank": 30,
+      "source_variable": "DECIDE",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": 6.3e-05,
+      "std_pr_auc_drop": 6.1e-05,
+      "mean_roc_auc_drop": 2e-05,
+      "std_roc_auc_drop": 3.3e-05
+    },
+    {
+      "rank": 31,
+      "source_variable": "DRNKANY6",
+      "feature_type": "categorical",
+      "num_transformed_columns": 4,
+      "mean_pr_auc_drop": 5.4e-05,
+      "std_pr_auc_drop": 0.000462,
+      "mean_roc_auc_drop": 0.00028,
+      "std_roc_auc_drop": 7.9e-05
+    },
+    {
+      "rank": 32,
+      "source_variable": "_RFDRHV9",
+      "feature_type": "categorical",
+      "num_transformed_columns": 3,
+      "mean_pr_auc_drop": 2.7e-05,
+      "std_pr_auc_drop": 5.4e-05,
+      "mean_roc_auc_drop": -1.3e-05,
+      "std_roc_auc_drop": 1.7e-05
+    },
+    {
+      "rank": 33,
+      "source_variable": "_HLTHPL2",
+      "feature_type": "categorical",
+      "num_transformed_columns": 3,
+      "mean_pr_auc_drop": -5e-06,
+      "std_pr_auc_drop": 0.00011,
+      "mean_roc_auc_drop": 5.6e-05,
+      "std_roc_auc_drop": 2.5e-05
+    },
+    {
+      "rank": 34,
+      "source_variable": "DIFFALON",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": -5e-06,
+      "std_pr_auc_drop": 6.6e-05,
+      "mean_roc_auc_drop": 3.4e-05,
+      "std_roc_auc_drop": 1.6e-05
+    },
+    {
+      "rank": 35,
+      "source_variable": "_CURECI3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 3,
+      "mean_pr_auc_drop": -9e-06,
+      "std_pr_auc_drop": 3.2e-05,
+      "mean_roc_auc_drop": -5e-06,
+      "std_roc_auc_drop": 1.8e-05
+    },
+    {
+      "rank": 36,
+      "source_variable": "MENTHLTH_DAYS",
+      "feature_type": "numeric",
+      "num_transformed_columns": 1,
+      "mean_pr_auc_drop": -8.6e-05,
+      "std_pr_auc_drop": 0.000224,
+      "mean_roc_auc_drop": 4.3e-05,
+      "std_roc_auc_drop": 4.6e-05
+    },
+    {
+      "rank": 37,
+      "source_variable": "_URBSTAT",
+      "feature_type": "categorical",
+      "num_transformed_columns": 3,
+      "mean_pr_auc_drop": -0.000103,
+      "std_pr_auc_drop": 9.9e-05,
+      "mean_roc_auc_drop": 1.4e-05,
+      "std_roc_auc_drop": 1.7e-05
+    },
+    {
+      "rank": 38,
+      "source_variable": "ASTHMA3",
+      "feature_type": "categorical",
+      "num_transformed_columns": 5,
+      "mean_pr_auc_drop": -0.000156,
+      "std_pr_auc_drop": 0.000228,
+      "mean_roc_auc_drop": 0.000169,
+      "std_roc_auc_drop": 6.3e-05
+    }
+  ],
+  "indicator_importance_top30": [
+    {
+      "rank": 1,
+      "transformed_feature_name": "num___AGE80",
+      "source_variable": "_AGE80",
+      "feature_type": "numeric",
+      "category_value": "nan",
+      "mean_pr_auc_drop": 0.077214,
+      "std_pr_auc_drop": 0.003596,
+      "mean_roc_auc_drop": 0.093609
+    },
+    {
+      "rank": 2,
+      "transformed_feature_name": "cat___SEX_1.0",
+      "source_variable": "_SEX",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.029848,
+      "std_pr_auc_drop": 0.001764,
+      "mean_roc_auc_drop": 0.015999
+    },
+    {
+      "rank": 3,
+      "transformed_feature_name": "cat__CVDSTRK3_2.0",
+      "source_variable": "CVDSTRK3",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.021378,
+      "std_pr_auc_drop": 0.00076,
+      "mean_roc_auc_drop": 0.007892
+    },
+    {
+      "rank": 4,
+      "transformed_feature_name": "cat__GENHLTH_5.0",
+      "source_variable": "GENHLTH",
+      "feature_type": "categorical",
+      "category_value": "5.0",
+      "mean_pr_auc_drop": 0.014871,
+      "std_pr_auc_drop": 0.000909,
+      "mean_roc_auc_drop": 0.002811
+    },
+    {
+      "rank": 5,
+      "transformed_feature_name": "cat__PERSDOC3_2.0",
+      "source_variable": "PERSDOC3",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.011223,
+      "std_pr_auc_drop": 0.000816,
+      "mean_roc_auc_drop": 0.006357
+    },
+    {
+      "rank": 6,
+      "transformed_feature_name": "cat__GENHLTH_1.0",
+      "source_variable": "GENHLTH",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.006277,
+      "std_pr_auc_drop": 0.00103,
+      "mean_roc_auc_drop": 0.005279
+    },
+    {
+      "rank": 7,
+      "transformed_feature_name": "cat__GENHLTH_4.0",
+      "source_variable": "GENHLTH",
+      "feature_type": "categorical",
+      "category_value": "4.0",
+      "mean_pr_auc_drop": 0.006246,
+      "std_pr_auc_drop": 0.000565,
+      "mean_roc_auc_drop": 0.002924
+    },
+    {
+      "rank": 8,
+      "transformed_feature_name": "cat__GENHLTH_2.0",
+      "source_variable": "GENHLTH",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.005395,
+      "std_pr_auc_drop": 0.000601,
+      "mean_roc_auc_drop": 0.003504
+    },
+    {
+      "rank": 9,
+      "transformed_feature_name": "cat__CHCCOPD3_2.0",
+      "source_variable": "CHCCOPD3",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.004692,
+      "std_pr_auc_drop": 0.000653,
+      "mean_roc_auc_drop": 0.002097
+    },
+    {
+      "rank": 10,
+      "transformed_feature_name": "cat__CHCKDNY2_2.0",
+      "source_variable": "CHCKDNY2",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.004553,
+      "std_pr_auc_drop": 0.000437,
+      "mean_roc_auc_drop": 0.000858
+    },
+    {
+      "rank": 11,
+      "transformed_feature_name": "cat__DIABETE4_1.0",
+      "source_variable": "DIABETE4",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.003892,
+      "std_pr_auc_drop": 0.000547,
+      "mean_roc_auc_drop": 0.001233
+    },
+    {
+      "rank": 12,
+      "transformed_feature_name": "cat___SMOKER3_4.0",
+      "source_variable": "_SMOKER3",
+      "feature_type": "categorical",
+      "category_value": "4.0",
+      "mean_pr_auc_drop": 0.003143,
+      "std_pr_auc_drop": 0.000604,
+      "mean_roc_auc_drop": 0.001827
+    },
+    {
+      "rank": 13,
+      "transformed_feature_name": "cat__HAVARTH4_1.0",
+      "source_variable": "HAVARTH4",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.002109,
+      "std_pr_auc_drop": 0.000926,
+      "mean_roc_auc_drop": 0.000943
+    },
+    {
+      "rank": 14,
+      "transformed_feature_name": "cat__DIABETE4_3.0",
+      "source_variable": "DIABETE4",
+      "feature_type": "categorical",
+      "category_value": "3.0",
+      "mean_pr_auc_drop": 0.0021,
+      "std_pr_auc_drop": 0.000378,
+      "mean_roc_auc_drop": 0.00076
+    },
+    {
+      "rank": 15,
+      "transformed_feature_name": "cat__CHCKDNY2_1.0",
+      "source_variable": "CHCKDNY2",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.001918,
+      "std_pr_auc_drop": 0.000173,
+      "mean_roc_auc_drop": 0.000374
+    },
+    {
+      "rank": 16,
+      "transformed_feature_name": "cat___RACE_1.0",
+      "source_variable": "_RACE",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.001797,
+      "std_pr_auc_drop": 0.00059,
+      "mean_roc_auc_drop": 0.000588
+    },
+    {
+      "rank": 17,
+      "transformed_feature_name": "cat___SEX_2.0",
+      "source_variable": "_SEX",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.001621,
+      "std_pr_auc_drop": 0.000485,
+      "mean_roc_auc_drop": 0.000482
+    },
+    {
+      "rank": 18,
+      "transformed_feature_name": "cat__EMPLOY1_1.0",
+      "source_variable": "EMPLOY1",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.001506,
+      "std_pr_auc_drop": 0.000425,
+      "mean_roc_auc_drop": 0.000361
+    },
+    {
+      "rank": 19,
+      "transformed_feature_name": "cat__CVDSTRK3_1.0",
+      "source_variable": "CVDSTRK3",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.001462,
+      "std_pr_auc_drop": 0.000168,
+      "mean_roc_auc_drop": 0.000649
+    },
+    {
+      "rank": 20,
+      "transformed_feature_name": "cat__DIFFWALK_1.0",
+      "source_variable": "DIFFWALK",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.001385,
+      "std_pr_auc_drop": 0.000338,
+      "mean_roc_auc_drop": 0.000827
+    },
+    {
+      "rank": 21,
+      "transformed_feature_name": "cat___RACE_2.0",
+      "source_variable": "_RACE",
+      "feature_type": "categorical",
+      "category_value": "2.0",
+      "mean_pr_auc_drop": 0.001214,
+      "std_pr_auc_drop": 0.000221,
+      "mean_roc_auc_drop": 0.000438
+    },
+    {
+      "rank": 22,
+      "transformed_feature_name": "cat__CHECKUP1_1.0",
+      "source_variable": "CHECKUP1",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.00118,
+      "std_pr_auc_drop": 0.000329,
+      "mean_roc_auc_drop": 0.000797
+    },
+    {
+      "rank": 23,
+      "transformed_feature_name": "num__PHYSHLTH_DAYS",
+      "source_variable": "PHYSHLTH_DAYS",
+      "feature_type": "numeric",
+      "category_value": "nan",
+      "mean_pr_auc_drop": 0.00116,
+      "std_pr_auc_drop": 0.00049,
+      "mean_roc_auc_drop": 0.000703
+    },
+    {
+      "rank": 24,
+      "transformed_feature_name": "num__BMI_NUMERIC",
+      "source_variable": "BMI_NUMERIC",
+      "feature_type": "numeric",
+      "category_value": "nan",
+      "mean_pr_auc_drop": 0.001073,
+      "std_pr_auc_drop": 0.000493,
+      "mean_roc_auc_drop": 0.000242
+    },
+    {
+      "rank": 25,
+      "transformed_feature_name": "cat__GENHLTH_3.0",
+      "source_variable": "GENHLTH",
+      "feature_type": "categorical",
+      "category_value": "3.0",
+      "mean_pr_auc_drop": 0.000884,
+      "std_pr_auc_drop": 0.000235,
+      "mean_roc_auc_drop": 0.000433
+    },
+    {
+      "rank": 26,
+      "transformed_feature_name": "cat__MARITAL_3.0",
+      "source_variable": "MARITAL",
+      "feature_type": "categorical",
+      "category_value": "3.0",
+      "mean_pr_auc_drop": 0.000673,
+      "std_pr_auc_drop": 0.000201,
+      "mean_roc_auc_drop": 0.000231
+    },
+    {
+      "rank": 27,
+      "transformed_feature_name": "cat__DIFFDRES_1.0",
+      "source_variable": "DIFFDRES",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.000595,
+      "std_pr_auc_drop": 0.000162,
+      "mean_roc_auc_drop": 3.5e-05
+    },
+    {
+      "rank": 28,
+      "transformed_feature_name": "cat__MARITAL_5.0",
+      "source_variable": "MARITAL",
+      "feature_type": "categorical",
+      "category_value": "5.0",
+      "mean_pr_auc_drop": 0.000567,
+      "std_pr_auc_drop": 0.000576,
+      "mean_roc_auc_drop": 0.000285
+    },
+    {
+      "rank": 29,
+      "transformed_feature_name": "cat__CHCCOPD3_1.0",
+      "source_variable": "CHCCOPD3",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.00051,
+      "std_pr_auc_drop": 0.000142,
+      "mean_roc_auc_drop": 0.000135
+    },
+    {
+      "rank": 30,
+      "transformed_feature_name": "cat__ADDEPEV3_1.0",
+      "source_variable": "ADDEPEV3",
+      "feature_type": "categorical",
+      "category_value": "1.0",
+      "mean_pr_auc_drop": 0.000437,
+      "std_pr_auc_drop": 0.000169,
+      "mean_roc_auc_drop": 0.000246
+    }
+  ],
+  "partial_dependence_profiles": {
+    "_AGE80": {
+      "display_name": "Continuous Age",
+      "unit": "Years",
+      "grid_unscaled": [
+        23.0,
+        24.16,
+        25.33,
+        26.49,
+        27.65,
+        28.82,
+        29.98,
+        31.14,
+        32.31,
+        33.47,
+        34.63,
+        35.8,
+        36.96,
+        38.12,
+        39.29,
+        40.45,
+        41.61,
+        42.78,
+        43.94,
+        45.1,
+        46.27,
+        47.43,
+        48.59,
+        49.76,
+        50.92,
+        52.08,
+        53.24,
+        54.41,
+        55.57,
+        56.73,
+        57.9,
+        59.06,
+        60.22,
+        61.39,
+        62.55,
+        63.71,
+        64.88,
+        66.04,
+        67.2,
+        68.37,
+        69.53,
+        70.69,
+        71.86,
+        73.02,
+        74.18,
+        75.35,
+        76.51,
+        77.67,
+        78.84,
+        80.0
+      ],
+      "marginal_probability": [
+        0.068,
+        0.0745,
+        0.0731,
+        0.0731,
+        0.0751,
+        0.0748,
+        0.0768,
+        0.0856,
+        0.0893,
+        0.0899,
+        0.1076,
+        0.1073,
+        0.1156,
+        0.1154,
+        0.1194,
+        0.1325,
+        0.1567,
+        0.1567,
+        0.1567,
+        0.1589,
+        0.1996,
+        0.2038,
+        0.2319,
+        0.2631,
+        0.2842,
+        0.2832,
+        0.2958,
+        0.3134,
+        0.3126,
+        0.3434,
+        0.392,
+        0.3945,
+        0.3974,
+        0.3997,
+        0.4298,
+        0.4584,
+        0.4593,
+        0.4707,
+        0.4795,
+        0.4925,
+        0.5149,
+        0.5348,
+        0.5349,
+        0.5368,
+        0.5609,
+        0.5758,
+        0.5866,
+        0.5929,
+        0.6193,
+        0.6214
+      ]
+    },
+    "PHYSHLTH_DAYS": {
+      "display_name": "Poor Physical Health Days",
+      "unit": "Days in past 30 days",
+      "grid_unscaled": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0,
+        8.0,
+        9.0,
+        10.0,
+        11.0,
+        12.0,
+        13.0,
+        14.0,
+        15.0,
+        16.0,
+        17.0,
+        18.0,
+        19.0,
+        20.0,
+        21.0,
+        22.0,
+        23.0,
+        24.0,
+        25.0,
+        26.0,
+        27.0,
+        28.0,
+        29.0,
+        30.0
+      ],
+      "marginal_probability": [
+        0.2801,
+        0.2803,
+        0.2871,
+        0.3094,
+        0.3095,
+        0.3094,
+        0.3093,
+        0.3105,
+        0.3115,
+        0.3279,
+        0.3278,
+        0.328,
+        0.3402,
+        0.3402,
+        0.3403,
+        0.341,
+        0.3413,
+        0.3413,
+        0.3417,
+        0.3417,
+        0.3431,
+        0.3425,
+        0.3424,
+        0.3422,
+        0.3421,
+        0.3413,
+        0.3399,
+        0.3391,
+        0.3346,
+        0.3343,
+        0.3344
+      ]
+    },
+    "BMI_NUMERIC": {
+      "display_name": "Body Mass Index (BMI)",
+      "unit": "kg/m\u00b2",
+      "grid_unscaled": [
+        20.25,
+        20.66,
+        21.06,
+        21.47,
+        21.88,
+        22.28,
+        22.69,
+        23.1,
+        23.5,
+        23.91,
+        24.32,
+        24.72,
+        25.13,
+        25.54,
+        25.94,
+        26.35,
+        26.76,
+        27.16,
+        27.57,
+        27.98,
+        28.38,
+        28.79,
+        29.2,
+        29.6,
+        30.01,
+        30.42,
+        30.83,
+        31.23,
+        31.64,
+        32.05,
+        32.45,
+        32.86,
+        33.27,
+        33.67,
+        34.08,
+        34.49,
+        34.89,
+        35.3,
+        35.71,
+        36.11,
+        36.52,
+        36.93,
+        37.33,
+        37.74,
+        38.15,
+        38.55,
+        38.96,
+        39.37,
+        39.77,
+        40.18
+      ],
+      "marginal_probability": [
+        0.2676,
+        0.2688,
+        0.2683,
+        0.2682,
+        0.2683,
+        0.2681,
+        0.2691,
+        0.2854,
+        0.2862,
+        0.288,
+        0.2887,
+        0.2876,
+        0.2878,
+        0.2883,
+        0.2907,
+        0.2905,
+        0.2897,
+        0.2896,
+        0.3017,
+        0.3018,
+        0.3026,
+        0.3027,
+        0.3028,
+        0.3046,
+        0.3044,
+        0.3044,
+        0.305,
+        0.3045,
+        0.3034,
+        0.3041,
+        0.303,
+        0.3021,
+        0.3016,
+        0.3015,
+        0.3013,
+        0.3013,
+        0.3015,
+        0.301,
+        0.3009,
+        0.3027,
+        0.2956,
+        0.2954,
+        0.2954,
+        0.2947,
+        0.2947,
+        0.2952,
+        0.2953,
+        0.2967,
+        0.2971,
+        0.2983
+      ]
+    }
+  },
+  "case_archetypes_summary": [
+    {
+      "category": "True Positive (TP)",
+      "case_id": "VALIDATION_ID_56065",
+      "validation_row_index": 29763,
+      "actual_target": 1,
+      "predicted_probability": 0.2671,
+      "locked_threshold": 0.08,
+      "predicted_class": 1,
+      "age_years": 76.0,
+      "general_health_code": 4.0,
+      "sex_code": 2.0,
+      "stroke_code": 2.0,
+      "physical_unhealthy_days": 5.0,
+      "bmi_numeric": 24.33,
+      "archetype_description": "High-risk respondent with reported CAD/MI history correctly flagged by screening model."
+    },
+    {
+      "category": "False Positive (FP)",
+      "case_id": "VALIDATION_ID_279669",
+      "validation_row_index": 35654,
+      "actual_target": 0,
+      "predicted_probability": 0.1655,
+      "locked_threshold": 0.08,
+      "predicted_class": 1,
+      "age_years": 60.0,
+      "general_health_code": 5.0,
+      "sex_code": 2.0,
+      "stroke_code": 2.0,
+      "physical_unhealthy_days": 30.0,
+      "bmi_numeric": 25.75,
+      "archetype_description": "Screening alert: Elevated risk profile above threshold without reported CAD/MI diagnosis."
+    },
+    {
+      "category": "True Negative (TN)",
+      "case_id": "VALIDATION_ID_253891",
+      "validation_row_index": 61735,
+      "actual_target": 0,
+      "predicted_probability": 0.0164,
+      "locked_threshold": 0.08,
+      "predicted_class": 0,
+      "age_years": 41.0,
+      "general_health_code": 1.0,
+      "sex_code": 2.0,
+      "stroke_code": 2.0,
+      "physical_unhealthy_days": 0.0,
+      "bmi_numeric": 34.97,
+      "archetype_description": "Low-risk baseline respondent correctly classified below screening threshold."
+    },
+    {
+      "category": "False Negative (FN)",
+      "case_id": "VALIDATION_ID_44471",
+      "validation_row_index": 7706,
+      "actual_target": 1,
+      "predicted_probability": 0.0442,
+      "locked_threshold": 0.08,
+      "predicted_class": 0,
+      "age_years": 73.0,
+      "general_health_code": 2.0,
+      "sex_code": 2.0,
+      "stroke_code": 2.0,
+      "physical_unhealthy_days": 0.0,
+      "bmi_numeric": 20.73,
+      "archetype_description": "Under-detected respondent with reported CAD/MI history presenting low conventional risk scores."
+    }
+  ],
+  "case_explanations": {
+    "True Positive (TP)": [
+      {
+        "source_variable": "ADDEPEV3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.002556,
+        "local_surrogate_weight": 0.005498,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "ASTHMA3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -9.2e-05,
+        "local_surrogate_weight": -0.002812,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "BLIND",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000642,
+        "local_surrogate_weight": -0.019479,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "BMI_NUMERIC",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.005455,
+        "local_surrogate_weight": 0.001841,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "CHCCOPD3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.009443,
+        "local_surrogate_weight": -0.068084,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "CHCKDNY2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.065264,
+        "local_surrogate_weight": -0.004577,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "CHCOCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.001409,
+        "local_surrogate_weight": -0.011254,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "CHCSCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.000427,
+        "local_surrogate_weight": 0.00746,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "CHECKUP1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": 0.002571,
+        "local_surrogate_weight": 0.006255,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "CVDSTRK3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.004324,
+        "local_surrogate_weight": -0.108243,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DEAF",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.00093,
+        "local_surrogate_weight": 0.00494,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DECIDE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.001016,
+        "local_surrogate_weight": -0.002435,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DIABETE4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": 0.040867,
+        "local_surrogate_weight": 0.030979,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DIFFALON",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.0016,
+        "local_surrogate_weight": 0.006978,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DIFFDRES",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000316,
+        "local_surrogate_weight": -0.002536,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DIFFWALK",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.012712,
+        "local_surrogate_weight": 0.061787,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "DRNKANY6",
+        "feature_type": "categorical",
+        "num_transformed_columns": 4,
+        "marginal_risk_delta_dp": -0.005282,
+        "local_surrogate_weight": 0.0146,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "EMPLOY1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 10,
+        "marginal_risk_delta_dp": -0.004076,
+        "local_surrogate_weight": -0.004903,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "GENHLTH",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": 0.066512,
+        "local_surrogate_weight": 0.107511,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "HAVARTH4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.020568,
+        "local_surrogate_weight": 0.01625,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "MARITAL",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": 0.012798,
+        "local_surrogate_weight": -0.023865,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "MEDCOST1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.003215,
+        "local_surrogate_weight": 0.007085,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "MENTHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": -0.00599,
+        "local_surrogate_weight": 0.003438,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "PERSDOC3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 6,
+        "marginal_risk_delta_dp": 0.058395,
+        "local_surrogate_weight": 0.067382,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "PHYSHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.019927,
+        "local_surrogate_weight": 0.016043,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_AGE80",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.083002,
+        "local_surrogate_weight": 0.07744,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_AGEG5YR",
+        "feature_type": "categorical",
+        "num_transformed_columns": 14,
+        "marginal_risk_delta_dp": -0.000528,
+        "local_surrogate_weight": -0.006781,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_CURECI3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": -0.002665,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_EDUCAG",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.016575,
+        "local_surrogate_weight": 0.002936,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_HLTHPL2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -9.6e-05,
+        "local_surrogate_weight": -0.005244,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_INCOMG1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": 0.000484,
+        "local_surrogate_weight": -0.010213,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_METSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.005738,
+        "local_surrogate_weight": 0.009713,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_RACE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 9,
+        "marginal_risk_delta_dp": -0.094981,
+        "local_surrogate_weight": 0.012986,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_RFDRHV9",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": 0.004847,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_SEX",
+        "feature_type": "categorical",
+        "num_transformed_columns": 2,
+        "marginal_risk_delta_dp": -0.056338,
+        "local_surrogate_weight": 0.114986,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_SMOKER3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.007735,
+        "local_surrogate_weight": -0.006606,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_TOTINDA",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": -0.002815,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9316
+      },
+      {
+        "source_variable": "_URBSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.001097,
+        "local_surrogate_weight": -0.005168,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9316
+      }
+    ],
+    "False Positive (FP)": [
+      {
+        "source_variable": "ADDEPEV3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": -0.004361,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "ASTHMA3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.007212,
+        "local_surrogate_weight": -0.005499,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "BLIND",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.002595,
+        "local_surrogate_weight": -0.003975,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "BMI_NUMERIC",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.000247,
+        "local_surrogate_weight": 0.002941,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "CHCCOPD3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.011313,
+        "local_surrogate_weight": -0.063746,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "CHCKDNY2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.004801,
+        "local_surrogate_weight": -0.059747,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "CHCOCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.001248,
+        "local_surrogate_weight": -0.020411,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "CHCSCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000451,
+        "local_surrogate_weight": 0.006693,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "CHECKUP1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": 0.003786,
+        "local_surrogate_weight": 0.002917,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "CVDSTRK3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.005966,
+        "local_surrogate_weight": -0.145837,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DEAF",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000815,
+        "local_surrogate_weight": 0.01778,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DECIDE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": -0.006098,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DIABETE4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": -0.024121,
+        "local_surrogate_weight": 0.092068,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DIFFALON",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.001847,
+        "local_surrogate_weight": -0.002992,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DIFFDRES",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.001651,
+        "local_surrogate_weight": -0.018949,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DIFFWALK",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.005962,
+        "local_surrogate_weight": 0.002383,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "DRNKANY6",
+        "feature_type": "categorical",
+        "num_transformed_columns": 4,
+        "marginal_risk_delta_dp": -0.015305,
+        "local_surrogate_weight": 0.028069,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "EMPLOY1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 10,
+        "marginal_risk_delta_dp": 0.001206,
+        "local_surrogate_weight": -0.00106,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "GENHLTH",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": 0.076461,
+        "local_surrogate_weight": -0.036624,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "HAVARTH4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.013298,
+        "local_surrogate_weight": 0.019953,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "MARITAL",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": -0.012963,
+        "local_surrogate_weight": 0.001834,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "MEDCOST1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.000916,
+        "local_surrogate_weight": 0.001864,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "MENTHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": -0.004992,
+        "local_surrogate_weight": -0.000923,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "PERSDOC3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 6,
+        "marginal_risk_delta_dp": 0.016191,
+        "local_surrogate_weight": 0.020997,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "PHYSHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.000924,
+        "local_surrogate_weight": 0.001704,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_AGE80",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.004316,
+        "local_surrogate_weight": 0.062715,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_AGEG5YR",
+        "feature_type": "categorical",
+        "num_transformed_columns": 14,
+        "marginal_risk_delta_dp": -0.002467,
+        "local_surrogate_weight": 0.063823,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_CURECI3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": 0.003334,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_EDUCAG",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.004236,
+        "local_surrogate_weight": -0.003067,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_HLTHPL2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.000269,
+        "local_surrogate_weight": -0.000636,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_INCOMG1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": 0.006504,
+        "local_surrogate_weight": -0.003472,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_METSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.008559,
+        "local_surrogate_weight": -0.003423,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_RACE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 9,
+        "marginal_risk_delta_dp": 0.001686,
+        "local_surrogate_weight": 0.005678,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_RFDRHV9",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": -0.017777,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_SEX",
+        "feature_type": "categorical",
+        "num_transformed_columns": 2,
+        "marginal_risk_delta_dp": -0.045133,
+        "local_surrogate_weight": 0.04335,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_SMOKER3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.006995,
+        "local_surrogate_weight": 0.010742,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_TOTINDA",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.004195,
+        "local_surrogate_weight": 0.005714,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9313
+      },
+      {
+        "source_variable": "_URBSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.000208,
+        "local_surrogate_weight": -0.001943,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9313
+      }
+    ],
+    "True Negative (TN)": [
+      {
+        "source_variable": "ADDEPEV3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000205,
+        "local_surrogate_weight": 0.003725,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "ASTHMA3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000187,
+        "local_surrogate_weight": 0.001813,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "BLIND",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.00025,
+        "local_surrogate_weight": 0.000831,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "BMI_NUMERIC",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.002342,
+        "local_surrogate_weight": 0.001798,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "CHCCOPD3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.001202,
+        "local_surrogate_weight": -0.007186,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "CHCKDNY2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000777,
+        "local_surrogate_weight": 0.005477,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "CHCOCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -2.2e-05,
+        "local_surrogate_weight": 0.000449,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "CHCSCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000126,
+        "local_surrogate_weight": 0.001327,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "CHECKUP1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": 0.000714,
+        "local_surrogate_weight": -0.003067,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "CVDSTRK3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.003649,
+        "local_surrogate_weight": -0.02978,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DEAF",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.001276,
+        "local_surrogate_weight": 0.005857,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DECIDE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000335,
+        "local_surrogate_weight": 0.003456,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DIABETE4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": 0.003644,
+        "local_surrogate_weight": -0.00035,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DIFFALON",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": 0.002874,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DIFFDRES",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 7.3e-05,
+        "local_surrogate_weight": 0.000949,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DIFFWALK",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.004737,
+        "local_surrogate_weight": 0.005448,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "DRNKANY6",
+        "feature_type": "categorical",
+        "num_transformed_columns": 4,
+        "marginal_risk_delta_dp": -0.000388,
+        "local_surrogate_weight": 0.000524,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "EMPLOY1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 10,
+        "marginal_risk_delta_dp": -0.001476,
+        "local_surrogate_weight": -0.001162,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "GENHLTH",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": -0.002938,
+        "local_surrogate_weight": 0.019833,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "HAVARTH4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.00342,
+        "local_surrogate_weight": 0.004732,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "MARITAL",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": -0.000219,
+        "local_surrogate_weight": 0.00341,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "MEDCOST1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.001527,
+        "local_surrogate_weight": 0.003031,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "MENTHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 5.5e-05,
+        "local_surrogate_weight": 0.000618,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "PERSDOC3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 6,
+        "marginal_risk_delta_dp": -0.003078,
+        "local_surrogate_weight": 0.003461,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "PHYSHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": -0.00101,
+        "local_surrogate_weight": 0.002568,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_AGE80",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": -0.007573,
+        "local_surrogate_weight": 0.012008,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_AGEG5YR",
+        "feature_type": "categorical",
+        "num_transformed_columns": 14,
+        "marginal_risk_delta_dp": -0.000595,
+        "local_surrogate_weight": 0.01006,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_CURECI3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": -0.0007,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_EDUCAG",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.00073,
+        "local_surrogate_weight": -0.001832,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_HLTHPL2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 1.8e-05,
+        "local_surrogate_weight": 0.000255,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_INCOMG1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": 0.003381,
+        "local_surrogate_weight": 0.003749,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_METSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.00034,
+        "local_surrogate_weight": -0.00024,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_RACE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 9,
+        "marginal_risk_delta_dp": -0.000589,
+        "local_surrogate_weight": -0.003725,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_RFDRHV9",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.000434,
+        "local_surrogate_weight": 0.003679,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_SEX",
+        "feature_type": "categorical",
+        "num_transformed_columns": 2,
+        "marginal_risk_delta_dp": -0.002699,
+        "local_surrogate_weight": 0.003794,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_SMOKER3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.005135,
+        "local_surrogate_weight": -0.007204,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_TOTINDA",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.0,
+        "local_surrogate_weight": 7.3e-05,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      },
+      {
+        "source_variable": "_URBSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -6.4e-05,
+        "local_surrogate_weight": 0.001367,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.8946
+      }
+    ],
+    "False Negative (FN)": [
+      {
+        "source_variable": "ADDEPEV3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.0,
+        "local_surrogate_weight": -4.3e-05,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "ASTHMA3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.002638,
+        "local_surrogate_weight": 0.004033,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "BLIND",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000676,
+        "local_surrogate_weight": 0.00428,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "BMI_NUMERIC",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": -0.007678,
+        "local_surrogate_weight": 0.005301,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "CHCCOPD3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.002894,
+        "local_surrogate_weight": -0.021305,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "CHCKDNY2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000782,
+        "local_surrogate_weight": -0.018216,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "CHCOCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -1.8e-05,
+        "local_surrogate_weight": 4.4e-05,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "CHCSCNC1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -8.3e-05,
+        "local_surrogate_weight": -0.002625,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "CHECKUP1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": 0.002469,
+        "local_surrogate_weight": 0.007039,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "CVDSTRK3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.001568,
+        "local_surrogate_weight": -0.036253,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DEAF",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000425,
+        "local_surrogate_weight": -0.005058,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DECIDE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.0,
+        "local_surrogate_weight": 0.002148,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DIABETE4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 7,
+        "marginal_risk_delta_dp": -0.00679,
+        "local_surrogate_weight": 0.000771,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DIFFALON",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 4.9e-05,
+        "local_surrogate_weight": -0.002764,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DIFFDRES",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000402,
+        "local_surrogate_weight": -0.009748,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DIFFWALK",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.001569,
+        "local_surrogate_weight": 0.008962,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "DRNKANY6",
+        "feature_type": "categorical",
+        "num_transformed_columns": 4,
+        "marginal_risk_delta_dp": -0.001797,
+        "local_surrogate_weight": 0.00431,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "EMPLOY1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 10,
+        "marginal_risk_delta_dp": 0.002317,
+        "local_surrogate_weight": -0.005869,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "GENHLTH",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": -0.03156,
+        "local_surrogate_weight": 0.084827,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "HAVARTH4",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": 0.002704,
+        "local_surrogate_weight": 0.00626,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "MARITAL",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": -0.001274,
+        "local_surrogate_weight": 0.018237,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "MEDCOST1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.00108,
+        "local_surrogate_weight": -0.001498,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "MENTHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.000215,
+        "local_surrogate_weight": 0.000825,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "PERSDOC3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 6,
+        "marginal_risk_delta_dp": 0.012965,
+        "local_surrogate_weight": 0.0191,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "PHYSHLTH_DAYS",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": -0.000516,
+        "local_surrogate_weight": 0.003295,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_AGE80",
+        "feature_type": "numeric",
+        "num_transformed_columns": 1,
+        "marginal_risk_delta_dp": 0.012104,
+        "local_surrogate_weight": 0.019784,
+        "directional_impact": "Risk-Elevating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_AGEG5YR",
+        "feature_type": "categorical",
+        "num_transformed_columns": 14,
+        "marginal_risk_delta_dp": -0.0009,
+        "local_surrogate_weight": 0.009885,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_CURECI3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -2.4e-05,
+        "local_surrogate_weight": -0.006057,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_EDUCAG",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.006207,
+        "local_surrogate_weight": 0.01474,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_HLTHPL2",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 1.5e-05,
+        "local_surrogate_weight": -0.006891,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_INCOMG1",
+        "feature_type": "categorical",
+        "num_transformed_columns": 8,
+        "marginal_risk_delta_dp": -0.002277,
+        "local_surrogate_weight": 0.009214,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_METSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 0.000447,
+        "local_surrogate_weight": 0.001735,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_RACE",
+        "feature_type": "categorical",
+        "num_transformed_columns": 9,
+        "marginal_risk_delta_dp": 0.000611,
+        "local_surrogate_weight": -0.004275,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_RFDRHV9",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": 8.7e-05,
+        "local_surrogate_weight": 0.002464,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_SEX",
+        "feature_type": "categorical",
+        "num_transformed_columns": 2,
+        "marginal_risk_delta_dp": -0.041089,
+        "local_surrogate_weight": 0.05008,
+        "directional_impact": "Risk-Mitigating",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_SMOKER3",
+        "feature_type": "categorical",
+        "num_transformed_columns": 5,
+        "marginal_risk_delta_dp": -0.000831,
+        "local_surrogate_weight": -0.010628,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_TOTINDA",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.0,
+        "local_surrogate_weight": 0.001233,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      },
+      {
+        "source_variable": "_URBSTAT",
+        "feature_type": "categorical",
+        "num_transformed_columns": 3,
+        "marginal_risk_delta_dp": -0.0,
+        "local_surrogate_weight": 0.002221,
+        "directional_impact": "Neutral",
+        "surrogate_fidelity_r2": 0.9049
+      }
+    ]
+  },
+  "methodology_notes": {
+    "attribution_method": "Grouped Marginal Perturbation Attribution (Delta p) relative to empirical validation background.",
+    "surrogate_method": "Local Ridge Linear Surrogate with exponential kernel distance weighting.",
+    "disclaimer": "Attributions reflect statistical model behavior, not causal biological effects or confirmed diagnoses."
+  }
+}

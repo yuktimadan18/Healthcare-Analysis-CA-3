@@ -1,0 +1,842 @@
+{
+  "metadata": {
+    "cohort_size": 452464,
+    "total_weighted_population": 260811708.1,
+    "disclaimer": "Survey-weighted metrics represent point estimates; complex-survey standard errors require PSU/Strata adjustments."
+  },
+  "distributions": {
+    "_SEX": {
+      "variable_name": "_SEX",
+      "display_name": "Biological Sex",
+      "domain": "Demographics",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Male",
+          "unweighted_count": 214790,
+          "unweighted_pct": 47.47,
+          "weighted_population_est": 127985609.6,
+          "weighted_pct": 49.07,
+          "target_cases": 24530,
+          "unweighted_prevalence_pct": 11.42,
+          "weighted_prevalence_pct": 8.12
+        },
+        {
+          "code": 2.0,
+          "label": "Female",
+          "unweighted_count": 237674,
+          "unweighted_pct": 52.53,
+          "weighted_population_est": 132826098.4,
+          "weighted_pct": 50.93,
+          "target_cases": 17808,
+          "unweighted_prevalence_pct": 7.49,
+          "weighted_prevalence_pct": 5.53
+        }
+      ]
+    },
+    "_AGEG5YR": {
+      "variable_name": "_AGEG5YR",
+      "display_name": "Age Category (5-Year Bands)",
+      "domain": "Demographics",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "18-24",
+          "unweighted_count": 29455,
+          "unweighted_pct": 6.51,
+          "weighted_population_est": 31865000.3,
+          "weighted_pct": 12.22,
+          "target_cases": 220,
+          "unweighted_prevalence_pct": 0.75,
+          "weighted_prevalence_pct": 0.82
+        },
+        {
+          "code": 2.0,
+          "label": "25-29",
+          "unweighted_count": 23542,
+          "unweighted_pct": 5.2,
+          "weighted_population_est": 19845435.8,
+          "weighted_pct": 7.61,
+          "target_cases": 220,
+          "unweighted_prevalence_pct": 0.93,
+          "weighted_prevalence_pct": 1.06
+        },
+        {
+          "code": 3.0,
+          "label": "30-34",
+          "unweighted_count": 26070,
+          "unweighted_pct": 5.76,
+          "weighted_population_est": 23818401.5,
+          "weighted_pct": 9.13,
+          "target_cases": 359,
+          "unweighted_prevalence_pct": 1.38,
+          "weighted_prevalence_pct": 1.22
+        },
+        {
+          "code": 4.0,
+          "label": "35-39",
+          "unweighted_count": 28593,
+          "unweighted_pct": 6.32,
+          "weighted_population_est": 20277628.1,
+          "weighted_pct": 7.77,
+          "target_cases": 499,
+          "unweighted_prevalence_pct": 1.75,
+          "weighted_prevalence_pct": 2.01
+        },
+        {
+          "code": 5.0,
+          "label": "40-44",
+          "unweighted_count": 30669,
+          "unweighted_pct": 6.78,
+          "weighted_population_est": 22544103.4,
+          "weighted_pct": 8.64,
+          "target_cases": 768,
+          "unweighted_prevalence_pct": 2.5,
+          "weighted_prevalence_pct": 2.33
+        },
+        {
+          "code": 6.0,
+          "label": "45-49",
+          "unweighted_count": 28757,
+          "unweighted_pct": 6.36,
+          "weighted_population_est": 17589484.2,
+          "weighted_pct": 6.74,
+          "target_cases": 1088,
+          "unweighted_prevalence_pct": 3.78,
+          "weighted_prevalence_pct": 3.37
+        },
+        {
+          "code": 7.0,
+          "label": "50-54",
+          "unweighted_count": 31403,
+          "unweighted_pct": 6.94,
+          "weighted_population_est": 19814215.8,
+          "weighted_pct": 7.6,
+          "target_cases": 1894,
+          "unweighted_prevalence_pct": 6.03,
+          "weighted_prevalence_pct": 6.02
+        },
+        {
+          "code": 8.0,
+          "label": "55-59",
+          "unweighted_count": 34604,
+          "unweighted_pct": 7.65,
+          "weighted_population_est": 18091403.0,
+          "weighted_pct": 6.94,
+          "target_cases": 2838,
+          "unweighted_prevalence_pct": 8.2,
+          "weighted_prevalence_pct": 8.31
+        },
+        {
+          "code": 9.0,
+          "label": "60-64",
+          "unweighted_count": 42960,
+          "unweighted_pct": 9.49,
+          "weighted_population_est": 21984309.3,
+          "weighted_pct": 8.43,
+          "target_cases": 4575,
+          "unweighted_prevalence_pct": 10.65,
+          "weighted_prevalence_pct": 10.77
+        },
+        {
+          "code": 10.0,
+          "label": "65-69",
+          "unweighted_count": 47220,
+          "unweighted_pct": 10.44,
+          "weighted_population_est": 18372603.4,
+          "weighted_pct": 7.04,
+          "target_cases": 6038,
+          "unweighted_prevalence_pct": 12.79,
+          "weighted_prevalence_pct": 12.61
+        },
+        {
+          "code": 11.0,
+          "label": "70-74",
+          "unweighted_count": 44268,
+          "unweighted_pct": 9.78,
+          "weighted_population_est": 16319637.6,
+          "weighted_pct": 6.26,
+          "target_cases": 6925,
+          "unweighted_prevalence_pct": 15.64,
+          "weighted_prevalence_pct": 15.29
+        },
+        {
+          "code": 12.0,
+          "label": "75-79",
+          "unweighted_count": 36185,
+          "unweighted_pct": 8.0,
+          "weighted_population_est": 12261214.8,
+          "weighted_pct": 4.7,
+          "target_cases": 6997,
+          "unweighted_prevalence_pct": 19.34,
+          "weighted_prevalence_pct": 18.75
+        },
+        {
+          "code": 13.0,
+          "label": "80+",
+          "unweighted_count": 40715,
+          "unweighted_pct": 9.0,
+          "weighted_population_est": 13498152.4,
+          "weighted_pct": 5.18,
+          "target_cases": 9336,
+          "unweighted_prevalence_pct": 22.93,
+          "weighted_prevalence_pct": 21.89
+        }
+      ]
+    },
+    "_RACE": {
+      "variable_name": "_RACE",
+      "display_name": "Race / Ethnicity",
+      "domain": "Demographics",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "White Non-Hispanic",
+          "unweighted_count": 326190,
+          "unweighted_pct": 72.09,
+          "weighted_population_est": 146458445.7,
+          "weighted_pct": 56.15,
+          "target_cases": 33581,
+          "unweighted_prevalence_pct": 10.29,
+          "weighted_prevalence_pct": 8.02
+        },
+        {
+          "code": 2.0,
+          "label": "Black Non-Hispanic",
+          "unweighted_count": 34683,
+          "unweighted_pct": 7.67,
+          "weighted_population_est": 30112978.2,
+          "weighted_pct": 11.55,
+          "target_cases": 2705,
+          "unweighted_prevalence_pct": 7.8,
+          "weighted_prevalence_pct": 6.28
+        },
+        {
+          "code": 3.0,
+          "label": "American Indian / AK Native",
+          "unweighted_count": 6361,
+          "unweighted_pct": 1.41,
+          "weighted_population_est": 2769452.4,
+          "weighted_pct": 1.06,
+          "target_cases": 710,
+          "unweighted_prevalence_pct": 11.16,
+          "weighted_prevalence_pct": 8.99
+        },
+        {
+          "code": 4.0,
+          "label": "Asian Non-Hispanic",
+          "unweighted_count": 12400,
+          "unweighted_pct": 2.74,
+          "weighted_population_est": 15732595.1,
+          "weighted_pct": 6.03,
+          "target_cases": 419,
+          "unweighted_prevalence_pct": 3.38,
+          "weighted_prevalence_pct": 2.4
+        },
+        {
+          "code": 5.0,
+          "label": "Native Hawaiian / Pacific Is.",
+          "unweighted_count": 2031,
+          "unweighted_pct": 0.45,
+          "weighted_population_est": 903851.6,
+          "weighted_pct": 0.35,
+          "target_cases": 199,
+          "unweighted_prevalence_pct": 9.8,
+          "weighted_prevalence_pct": 5.31
+        },
+        {
+          "code": 6.0,
+          "label": "Other Non-Hispanic",
+          "unweighted_count": 3656,
+          "unweighted_pct": 0.81,
+          "weighted_population_est": 2776207.4,
+          "weighted_pct": 1.06,
+          "target_cases": 363,
+          "unweighted_prevalence_pct": 9.93,
+          "weighted_prevalence_pct": 8.27
+        },
+        {
+          "code": 7.0,
+          "label": "Multiracial Non-Hispanic",
+          "unweighted_count": 10341,
+          "unweighted_pct": 2.29,
+          "weighted_population_est": 6734396.9,
+          "weighted_pct": 2.58,
+          "target_cases": 903,
+          "unweighted_prevalence_pct": 8.73,
+          "weighted_prevalence_pct": 7.11
+        },
+        {
+          "code": 8.0,
+          "label": "Hispanic",
+          "unweighted_count": 48024,
+          "unweighted_pct": 10.61,
+          "weighted_population_est": 50065682.5,
+          "weighted_pct": 19.2,
+          "target_cases": 2568,
+          "unweighted_prevalence_pct": 5.35,
+          "weighted_prevalence_pct": 4.6
+        }
+      ]
+    },
+    "_EDUCAG": {
+      "variable_name": "_EDUCAG",
+      "display_name": "Education Completed",
+      "domain": "Demographics",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Did not graduate High School",
+          "unweighted_count": 26417,
+          "unweighted_pct": 5.84,
+          "weighted_population_est": 28578517.0,
+          "weighted_pct": 10.96,
+          "target_cases": 3428,
+          "unweighted_prevalence_pct": 12.98,
+          "weighted_prevalence_pct": 9.41
+        },
+        {
+          "code": 2.0,
+          "label": "High School Graduate",
+          "unweighted_count": 114133,
+          "unweighted_pct": 25.22,
+          "weighted_population_est": 70906015.8,
+          "weighted_pct": 27.19,
+          "target_cases": 12004,
+          "unweighted_prevalence_pct": 10.52,
+          "weighted_prevalence_pct": 7.2
+        },
+        {
+          "code": 3.0,
+          "label": "Attended College / Technical",
+          "unweighted_count": 119463,
+          "unweighted_pct": 26.4,
+          "weighted_population_est": 77005287.1,
+          "weighted_pct": 29.53,
+          "target_cases": 12618,
+          "unweighted_prevalence_pct": 10.56,
+          "weighted_prevalence_pct": 7.37
+        },
+        {
+          "code": 4.0,
+          "label": "College Graduate",
+          "unweighted_count": 190252,
+          "unweighted_pct": 42.05,
+          "weighted_population_est": 82830389.0,
+          "weighted_pct": 31.76,
+          "target_cases": 14133,
+          "unweighted_prevalence_pct": 7.43,
+          "weighted_prevalence_pct": 5.07
+        }
+      ]
+    },
+    "_INCOMG1": {
+      "variable_name": "_INCOMG1",
+      "display_name": "Annual Household Income",
+      "domain": "Demographics",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "< $15,000",
+          "unweighted_count": 20306,
+          "unweighted_pct": 4.49,
+          "weighted_population_est": 12601177.6,
+          "weighted_pct": 4.83,
+          "target_cases": 2897,
+          "unweighted_prevalence_pct": 14.27,
+          "weighted_prevalence_pct": 10.8
+        },
+        {
+          "code": 2.0,
+          "label": "$15,000 to <$25,000",
+          "unweighted_count": 32851,
+          "unweighted_pct": 7.26,
+          "weighted_population_est": 18567175.2,
+          "weighted_pct": 7.12,
+          "target_cases": 5149,
+          "unweighted_prevalence_pct": 15.67,
+          "weighted_prevalence_pct": 11.63
+        },
+        {
+          "code": 3.0,
+          "label": "$25,000 to <$35,000",
+          "unweighted_count": 41165,
+          "unweighted_pct": 9.1,
+          "weighted_population_est": 23182498.8,
+          "weighted_pct": 8.89,
+          "target_cases": 5219,
+          "unweighted_prevalence_pct": 12.68,
+          "weighted_prevalence_pct": 8.89
+        },
+        {
+          "code": 4.0,
+          "label": "$35,000 to <$50,000",
+          "unweighted_count": 49138,
+          "unweighted_pct": 10.86,
+          "weighted_population_est": 26282012.2,
+          "weighted_pct": 10.08,
+          "target_cases": 5359,
+          "unweighted_prevalence_pct": 10.91,
+          "weighted_prevalence_pct": 7.95
+        },
+        {
+          "code": 5.0,
+          "label": "$50,000 to <$100,000",
+          "unweighted_count": 111666,
+          "unweighted_pct": 24.68,
+          "weighted_population_est": 58908026.3,
+          "weighted_pct": 22.59,
+          "target_cases": 9800,
+          "unweighted_prevalence_pct": 8.78,
+          "weighted_prevalence_pct": 6.41
+        },
+        {
+          "code": 6.0,
+          "label": "$100,000 to <$200,000",
+          "unweighted_count": 82170,
+          "unweighted_pct": 18.16,
+          "weighted_population_est": 47483731.0,
+          "weighted_pct": 18.21,
+          "target_cases": 4626,
+          "unweighted_prevalence_pct": 5.63,
+          "weighted_prevalence_pct": 4.17
+        },
+        {
+          "code": 7.0,
+          "label": ">= $200,000",
+          "unweighted_count": 29610,
+          "unweighted_pct": 6.54,
+          "weighted_population_est": 19906617.5,
+          "weighted_pct": 7.63,
+          "target_cases": 1291,
+          "unweighted_prevalence_pct": 4.36,
+          "weighted_prevalence_pct": 3.46
+        }
+      ]
+    },
+    "GENHLTH": {
+      "variable_name": "GENHLTH",
+      "display_name": "Self-Rated General Health",
+      "domain": "Health Status",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Excellent",
+          "unweighted_count": 63938,
+          "unweighted_pct": 14.13,
+          "weighted_population_est": 40337438.0,
+          "weighted_pct": 15.47,
+          "target_cases": 1589,
+          "unweighted_prevalence_pct": 2.49,
+          "weighted_prevalence_pct": 1.84
+        },
+        {
+          "code": 2.0,
+          "label": "Very Good",
+          "unweighted_count": 144984,
+          "unweighted_pct": 32.04,
+          "weighted_population_est": 79799482.9,
+          "weighted_pct": 30.6,
+          "target_cases": 7007,
+          "unweighted_prevalence_pct": 4.83,
+          "weighted_prevalence_pct": 3.4
+        },
+        {
+          "code": 3.0,
+          "label": "Good",
+          "unweighted_count": 154392,
+          "unweighted_pct": 34.12,
+          "weighted_population_est": 89690770.3,
+          "weighted_pct": 34.39,
+          "target_cases": 14455,
+          "unweighted_prevalence_pct": 9.36,
+          "weighted_prevalence_pct": 6.35
+        },
+        {
+          "code": 4.0,
+          "label": "Fair",
+          "unweighted_count": 66479,
+          "unweighted_pct": 14.69,
+          "weighted_population_est": 38568839.9,
+          "weighted_pct": 14.79,
+          "target_cases": 12347,
+          "unweighted_prevalence_pct": 18.57,
+          "weighted_prevalence_pct": 14.04
+        },
+        {
+          "code": 5.0,
+          "label": "Poor",
+          "unweighted_count": 21470,
+          "unweighted_pct": 4.75,
+          "weighted_population_est": 11684345.6,
+          "weighted_pct": 4.48,
+          "target_cases": 6772,
+          "unweighted_prevalence_pct": 31.54,
+          "weighted_prevalence_pct": 26.45
+        }
+      ]
+    },
+    "DIABETE4": {
+      "variable_name": "DIABETE4",
+      "display_name": "Diagnosed Diabetes History",
+      "domain": "Comorbidities",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Yes (Diabetes)",
+          "unweighted_count": 64586,
+          "unweighted_pct": 14.27,
+          "weighted_population_est": 32252862.2,
+          "weighted_pct": 12.37,
+          "target_cases": 14217,
+          "unweighted_prevalence_pct": 22.01,
+          "weighted_prevalence_pct": 18.86
+        },
+        {
+          "code": 2.0,
+          "label": "Yes (Pregnancy only)",
+          "unweighted_count": 3365,
+          "unweighted_pct": 0.74,
+          "weighted_population_est": 2146928.9,
+          "weighted_pct": 0.82,
+          "target_cases": 182,
+          "unweighted_prevalence_pct": 5.41,
+          "weighted_prevalence_pct": 4.72
+        },
+        {
+          "code": 3.0,
+          "label": "No (Never diagnosed)",
+          "unweighted_count": 372683,
+          "unweighted_pct": 82.37,
+          "weighted_population_est": 219032495.4,
+          "weighted_pct": 83.98,
+          "target_cases": 26375,
+          "unweighted_prevalence_pct": 7.08,
+          "weighted_prevalence_pct": 4.92
+        },
+        {
+          "code": 4.0,
+          "label": "No (Pre-diabetes / Borderline)",
+          "unweighted_count": 11059,
+          "unweighted_pct": 2.44,
+          "weighted_population_est": 6822284.3,
+          "weighted_pct": 2.62,
+          "target_cases": 1480,
+          "unweighted_prevalence_pct": 13.38,
+          "weighted_prevalence_pct": 11.03
+        }
+      ]
+    },
+    "CVDSTRK3": {
+      "variable_name": "CVDSTRK3",
+      "display_name": "Diagnosed Stroke History",
+      "domain": "Comorbidities",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Yes (Ever diagnosed)",
+          "unweighted_count": 20102,
+          "unweighted_pct": 4.44,
+          "weighted_population_est": 9047018.4,
+          "weighted_pct": 3.47,
+          "target_cases": 7281,
+          "unweighted_prevalence_pct": 36.22,
+          "weighted_prevalence_pct": 34.82
+        },
+        {
+          "code": 2.0,
+          "label": "No",
+          "unweighted_count": 431367,
+          "unweighted_pct": 95.34,
+          "weighted_population_est": 251345336.2,
+          "weighted_pct": 96.37,
+          "target_cases": 34782,
+          "unweighted_prevalence_pct": 8.06,
+          "weighted_prevalence_pct": 5.77
+        }
+      ]
+    },
+    "CHCKDNY2": {
+      "variable_name": "CHCKDNY2",
+      "display_name": "Chronic Kidney Disease",
+      "domain": "Comorbidities",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Yes (Ever diagnosed)",
+          "unweighted_count": 23236,
+          "unweighted_pct": 5.14,
+          "weighted_population_est": 10601271.6,
+          "weighted_pct": 4.06,
+          "target_cases": 6756,
+          "unweighted_prevalence_pct": 29.08,
+          "weighted_prevalence_pct": 26.61
+        },
+        {
+          "code": 2.0,
+          "label": "No",
+          "unweighted_count": 427574,
+          "unweighted_pct": 94.5,
+          "weighted_population_est": 249364074.8,
+          "weighted_pct": 95.61,
+          "target_cases": 35251,
+          "unweighted_prevalence_pct": 8.24,
+          "weighted_prevalence_pct": 5.92
+        }
+      ]
+    },
+    "_SMOKER3": {
+      "variable_name": "_SMOKER3",
+      "display_name": "Tobacco Smoking Status",
+      "domain": "Behaviors & Access",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Current Smoker (Daily)",
+          "unweighted_count": 32628,
+          "unweighted_pct": 7.21,
+          "weighted_population_est": 17354387.5,
+          "weighted_pct": 6.65,
+          "target_cases": 4372,
+          "unweighted_prevalence_pct": 13.4,
+          "weighted_prevalence_pct": 10.78
+        },
+        {
+          "code": 2.0,
+          "label": "Current Smoker (Some days)",
+          "unweighted_count": 13776,
+          "unweighted_pct": 3.04,
+          "weighted_population_est": 8564175.1,
+          "weighted_pct": 3.28,
+          "target_cases": 1497,
+          "unweighted_prevalence_pct": 10.87,
+          "weighted_prevalence_pct": 8.17
+        },
+        {
+          "code": 3.0,
+          "label": "Former Smoker",
+          "unweighted_count": 118181,
+          "unweighted_pct": 26.12,
+          "weighted_population_est": 58881661.2,
+          "weighted_pct": 22.58,
+          "target_cases": 16647,
+          "unweighted_prevalence_pct": 14.09,
+          "weighted_prevalence_pct": 11.43
+        },
+        {
+          "code": 4.0,
+          "label": "Never Smoked",
+          "unweighted_count": 256497,
+          "unweighted_pct": 56.69,
+          "weighted_population_est": 155286577.1,
+          "weighted_pct": 59.54,
+          "target_cases": 17071,
+          "unweighted_prevalence_pct": 6.66,
+          "weighted_prevalence_pct": 4.64
+        }
+      ]
+    },
+    "CHECKUP1": {
+      "variable_name": "CHECKUP1",
+      "display_name": "Time Since Last Routine Checkup",
+      "domain": "Behaviors & Access",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Within past year (<12 mo)",
+          "unweighted_count": 365772,
+          "unweighted_pct": 80.84,
+          "weighted_population_est": 200674176.4,
+          "weighted_pct": 76.94,
+          "target_cases": 39047,
+          "unweighted_prevalence_pct": 10.68,
+          "weighted_prevalence_pct": 8.06
+        },
+        {
+          "code": 2.0,
+          "label": "1 to <2 years ago",
+          "unweighted_count": 39328,
+          "unweighted_pct": 8.69,
+          "weighted_population_est": 26661868.8,
+          "weighted_pct": 10.22,
+          "target_cases": 1697,
+          "unweighted_prevalence_pct": 4.31,
+          "weighted_prevalence_pct": 2.71
+        },
+        {
+          "code": 3.0,
+          "label": "2 to <5 years ago",
+          "unweighted_count": 21293,
+          "unweighted_pct": 4.71,
+          "weighted_population_est": 15656148.0,
+          "weighted_pct": 6.0,
+          "target_cases": 617,
+          "unweighted_prevalence_pct": 2.9,
+          "weighted_prevalence_pct": 2.09
+        },
+        {
+          "code": 4.0,
+          "label": "5+ years ago",
+          "unweighted_count": 18248,
+          "unweighted_pct": 4.03,
+          "weighted_population_est": 12211867.3,
+          "weighted_pct": 4.68,
+          "target_cases": 522,
+          "unweighted_prevalence_pct": 2.86,
+          "weighted_prevalence_pct": 2.44
+        },
+        {
+          "code": 8.0,
+          "label": "Never",
+          "unweighted_count": 2729,
+          "unweighted_pct": 0.6,
+          "weighted_population_est": 2196722.3,
+          "weighted_pct": 0.84,
+          "target_cases": 93,
+          "unweighted_prevalence_pct": 3.41,
+          "weighted_prevalence_pct": 2.45
+        }
+      ]
+    },
+    "PERSDOC3": {
+      "variable_name": "PERSDOC3",
+      "display_name": "Personal Healthcare Provider Continuity",
+      "domain": "Behaviors & Access",
+      "categories": [
+        {
+          "code": 1.0,
+          "label": "Yes, only one",
+          "unweighted_count": 240135,
+          "unweighted_pct": 53.07,
+          "weighted_population_est": 132222964.3,
+          "weighted_pct": 50.7,
+          "target_cases": 18373,
+          "unweighted_prevalence_pct": 7.65,
+          "weighted_prevalence_pct": 5.51
+        },
+        {
+          "code": 2.0,
+          "label": "More than one",
+          "unweighted_count": 152471,
+          "unweighted_pct": 33.7,
+          "weighted_population_est": 82084656.3,
+          "weighted_pct": 31.47,
+          "target_cases": 21752,
+          "unweighted_prevalence_pct": 14.27,
+          "weighted_prevalence_pct": 11.23
+        },
+        {
+          "code": 3.0,
+          "label": "No",
+          "unweighted_count": 55450,
+          "unweighted_pct": 12.26,
+          "weighted_population_est": 43303670.5,
+          "weighted_pct": 16.6,
+          "target_cases": 1896,
+          "unweighted_prevalence_pct": 3.42,
+          "weighted_prevalence_pct": 2.5
+        }
+      ]
+    }
+  },
+  "continuous_risk_factor_stats": [
+    {
+      "variable_label": "BMI (_BMI5)",
+      "count": 414633,
+      "mean": 28.56,
+      "std": 6.59,
+      "median": 27.44,
+      "iqr": 7.61,
+      "min": 12.0,
+      "max": 99.84
+    },
+    {
+      "variable_label": "Days Physical Health Not Good (PHYSHLTH)",
+      "count": 446603,
+      "mean": 4.61,
+      "std": 8.93,
+      "median": 0.0,
+      "iqr": 4.0,
+      "min": 0.0,
+      "max": 30.0
+    },
+    {
+      "variable_label": "Days Mental Health Not Good (MENTHLTH)",
+      "count": 449514,
+      "mean": 4.41,
+      "std": 8.36,
+      "median": 0.0,
+      "iqr": 5.0,
+      "min": 0.0,
+      "max": 30.0
+    },
+    {
+      "variable_label": "Drinks per Week (_DRNKWK3)",
+      "count": 410972,
+      "mean": 2.79,
+      "std": 8.96,
+      "median": 0.23,
+      "iqr": 2.1,
+      "min": 0.0,
+      "max": 532.0
+    }
+  ],
+  "multivariable_odds_ratios": [
+    {
+      "covariate": "age_65plus",
+      "odds_ratio": 4.569,
+      "ci_lower_95": 4.316,
+      "ci_upper_95": 4.838,
+      "p_value": 0.0
+    },
+    {
+      "covariate": "male_sex",
+      "odds_ratio": 1.73,
+      "ci_lower_95": 1.637,
+      "ci_upper_95": 1.829,
+      "p_value": 0.0
+    },
+    {
+      "covariate": "bmi_overweight_obese",
+      "odds_ratio": 1.204,
+      "ci_lower_95": 1.132,
+      "ci_upper_95": 1.281,
+      "p_value": 4.7900720034176443e-32
+    },
+    {
+      "covariate": "current_smoker",
+      "odds_ratio": 1.582,
+      "ci_lower_95": 1.469,
+      "ci_upper_95": 1.704,
+      "p_value": 2.2826808178886034e-126
+    },
+    {
+      "covariate": "physical_inactivity",
+      "odds_ratio": 1.206,
+      "ci_lower_95": 1.135,
+      "ci_upper_95": 1.281,
+      "p_value": 7.516640935776618e-35
+    },
+    {
+      "covariate": "fair_poor_health",
+      "odds_ratio": 3.102,
+      "ci_lower_95": 2.925,
+      "ci_upper_95": 3.289,
+      "p_value": 0.0
+    },
+    {
+      "covariate": "diabetes",
+      "odds_ratio": 1.985,
+      "ci_lower_95": 1.86,
+      "ci_upper_95": 2.118,
+      "p_value": 0.0
+    },
+    {
+      "covariate": "kidney_disease",
+      "odds_ratio": 2.413,
+      "ci_lower_95": 2.191,
+      "ci_upper_95": 2.657,
+      "p_value": 0.0
+    }
+  ]
+}

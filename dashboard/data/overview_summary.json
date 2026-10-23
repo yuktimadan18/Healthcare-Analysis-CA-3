@@ -1,0 +1,140 @@
+{
+  "project_title": "Population Health Analytics & Explainable ML \u2014 CDC BRFSS 2024",
+  "data_source": "CDC Behavioral Risk Factor Surveillance System (BRFSS) 2024",
+  "cohort_dimensions": {
+    "total_survey_respondents": 452464,
+    "positive_cases": 42338,
+    "negative_cases": 410126,
+    "missing_excluded_cases": 5206,
+    "raw_total_records": 457670,
+    "unweighted_prevalence_pct": 9.36,
+    "survey_weighted_prevalence_pct": 6.8,
+    "imbalance_ratio": 9.69
+  },
+  "target_definition": {
+    "variable": "_MICHD",
+    "full_name": "Reported History of Myocardial Infarction or Coronary Heart Disease",
+    "construct_description": "Binary indicator recording whether a respondent ever reported receiving a diagnosis of heart attack (myocardial infarction) or angina / coronary heart disease from a health professional.",
+    "excluded_direct_leakage_constituents": [
+      "CVDINFR4",
+      "CVDCRHD4"
+    ]
+  },
+  "champion_model": {
+    "key": "hist_gradient_boosting_unweighted",
+    "name": "HistGradientBoosting (Unweighted GBDT)",
+    "status": "LOCKED",
+    "validation_pr_auc": 0.3701,
+    "validation_roc_auc": 0.8449,
+    "validation_brier_score": 0.07,
+    "locked_threshold": 0.08,
+    "selection_objective": "youden_j (Balanced Population Screening)"
+  },
+  "candidate_outcomes_feasibility": [
+    {
+      "variable": "_MICHD",
+      "condition_name": "Myocardial Infarction / CHD",
+      "category": "Cardiovascular",
+      "valid_positive": 42338,
+      "valid_negative": 410126,
+      "unweighted_prev_pct": 9.36,
+      "weighted_prev_pct": 6.8,
+      "imbalance_ratio": 9.69
+    },
+    {
+      "variable": "CVDINFR4",
+      "condition_name": "Heart Attack (History)",
+      "category": "Cardiovascular",
+      "valid_positive": 26672,
+      "valid_negative": 427883,
+      "unweighted_prev_pct": 5.87,
+      "weighted_prev_pct": 4.38,
+      "imbalance_ratio": 16.04
+    },
+    {
+      "variable": "CVDCRHD4",
+      "condition_name": "Angina / Coronary Heart Disease",
+      "category": "Cardiovascular",
+      "valid_positive": 28511,
+      "valid_negative": 424581,
+      "unweighted_prev_pct": 6.29,
+      "weighted_prev_pct": 4.31,
+      "imbalance_ratio": 14.89
+    },
+    {
+      "variable": "CVDSTRK3",
+      "condition_name": "Stroke (Ever Diagnosed)",
+      "category": "Cerebrovascular",
+      "valid_positive": 20661,
+      "valid_negative": 435557,
+      "unweighted_prev_pct": 4.53,
+      "weighted_prev_pct": 3.53,
+      "imbalance_ratio": 21.08
+    },
+    {
+      "variable": "DIABETE4",
+      "condition_name": "Diabetes (Ever Diagnosed)",
+      "category": "Metabolic",
+      "valid_positive": 65809,
+      "valid_negative": 387432,
+      "unweighted_prev_pct": 14.52,
+      "weighted_prev_pct": 12.63,
+      "imbalance_ratio": 5.89
+    },
+    {
+      "variable": "ASTHMA3",
+      "condition_name": "Asthma (Ever Diagnosed)",
+      "category": "Respiratory",
+      "valid_positive": 72037,
+      "valid_negative": 383772,
+      "unweighted_prev_pct": 15.8,
+      "weighted_prev_pct": 15.73,
+      "imbalance_ratio": 5.33
+    },
+    {
+      "variable": "CHCCOPD3",
+      "condition_name": "COPD / Emphysema",
+      "category": "Respiratory",
+      "valid_positive": 36921,
+      "valid_negative": 418575,
+      "unweighted_prev_pct": 8.11,
+      "weighted_prev_pct": 6.3,
+      "imbalance_ratio": 11.34
+    },
+    {
+      "variable": "ADDEPEV3",
+      "condition_name": "Depressive Disorder",
+      "category": "Mental Health",
+      "valid_positive": 96125,
+      "valid_negative": 358881,
+      "unweighted_prev_pct": 21.13,
+      "weighted_prev_pct": 21.04,
+      "imbalance_ratio": 3.73
+    },
+    {
+      "variable": "CHCKDNY2",
+      "condition_name": "Kidney Disease",
+      "category": "Renal",
+      "valid_positive": 23752,
+      "valid_negative": 431939,
+      "unweighted_prev_pct": 5.21,
+      "weighted_prev_pct": 4.13,
+      "imbalance_ratio": 18.19
+    },
+    {
+      "variable": "HAVARTH4",
+      "condition_name": "Arthritis (Diagnosed)",
+      "category": "Musculoskeletal",
+      "valid_positive": 158319,
+      "valid_negative": 296778,
+      "unweighted_prev_pct": 34.79,
+      "weighted_prev_pct": 26.55,
+      "imbalance_ratio": 1.87
+    }
+  ],
+  "methodological_disclaimers": [
+    "Cross-sectional surveillance classification model; not a prospective disease onset predictor.",
+    "Self-reported chronic disease history; clinical diagnostic utility has not been established.",
+    "Zero target leakage: _MICHD, CVDINFR4, and CVDCRHD4 are strictly excluded from predictors."
+  ]
+}

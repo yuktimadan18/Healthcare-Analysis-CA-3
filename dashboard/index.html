@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An Explainable Data-Driven Framework for Population Health Analytics and Predictive Modeling Using CDC BRFSS 2024.">
+    <meta name="author" content="Healthcare Analytics Research Team">
+    <title>Population Health Analytics & Explainable ML — CDC BRFSS 2024</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Plotly.js for interactive scientific visualizations (Requires internet connection for CDN asset) -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <!-- Full-Screen Loading Overlay -->
+    <div id="loading-overlay" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <div id="loading-text" style="font-weight: 600; color: #1e293b;">Initializing Dashboard & Preloading Artifacts...</div>
+        <div style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem;">CDC BRFSS 2024 (N = 452,464)</div>
+    </div>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="app-sidebar" role="navigation" aria-label="Main Navigation">
+            <div class="sidebar-header">
+                <div class="brand-title">Population Health Analytics & Explainable ML</div>
+                <div class="brand-subtitle">CDC BRFSS 2024 Research Suite</div>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#overview" class="nav-link active" data-section="overview">
+                        <span class="nav-icon">📊</span>
+                        <span>1. Overview & Scope</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#population" class="nav-link" data-section="population">
+                        <span class="nav-icon">👥</span>
+                        <span>2. Population Health Explorer</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#performance" class="nav-link" data-section="performance">
+                        <span class="nav-icon">🎯</span>
+                        <span>3. Model Performance</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#threshold" class="nav-link" data-section="threshold">
+                        <span class="nav-icon">⚖️</span>
+                        <span>4. Threshold Analysis</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#xai" class="nav-link" data-section="xai">
+                        <span class="nav-icon">🔍</span>
+                        <span>5. Explainable AI (XAI)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#limitations" class="nav-link" data-section="limitations">
+                        <span class="nav-icon">🛡️</span>
+                        <span>6. Limitations & Ethics</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-status-pill">
+                    <span>🔒</span>
+                    <span>Locked Cutoff: τ = 0.080</span>
+                </div>
+                <div>CDC BRFSS 2024 Analytical Cohort</div>
+                <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 0.2rem;">Single-Page Application (Plotly.js)</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="app-main" role="main">
+            <!-- Header Bar -->
+            <header class="app-header">
+                <div class="header-title">
+                    <h1>Population Health Analytics & Predictive Modeling</h1>
+                    <p>Cardiovascular Disease Classification & Algorithmic Auditing (CDC BRFSS 2024, N = 452,464)</p>
+                </div>
+                <div class="header-badges">
+                    <span class="badge badge-cdc">CDC BRFSS 2024</span>
+                    <span class="badge badge-champ">Champion: GBDT</span>
+                    <span class="badge badge-locked">Locked τ = 0.080</span>
+                </div>
+            </header>
+
+            <!-- Error Notification Container -->
+            <div id="error-container" style="display: none;"></div>
+
+            <!-- Six Modular Sections -->
+            <section id="section-overview" class="dashboard-section active" aria-labelledby="overview-heading"></section>
+            <section id="section-population" class="dashboard-section" aria-labelledby="population-heading"></section>
+            <section id="section-performance" class="dashboard-section" aria-labelledby="performance-heading"></section>
+            <section id="section-threshold" class="dashboard-section" aria-labelledby="threshold-heading"></section>
+            <section id="section-xai" class="dashboard-section" aria-labelledby="xai-heading"></section>
+            <section id="section-limitations" class="dashboard-section" aria-labelledby="limitations-heading"></section>
+
+            <!-- Academic Footer -->
+            <footer style="margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                <p><strong>Research Notice:</strong> Developed for population health surveillance research and machine learning interpretability auditing. Not intended for individual clinical diagnosis or medical risk assessment.</p>
+                <p style="margin-top: 0.35rem;">Data Source: Centers for Disease Control and Prevention (CDC) Behavioral Risk Factor Surveillance System (BRFSS) 2024.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Application Scripts (Loaded in strict modular sequence) -->
+    <script src="components/charts.js"></script>
+    <script src="components/views.js"></script>
+    <script src="components/data_loader.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -203,7 +203,7 @@ The dashboard is an academic single-page application titled **“Population Heal
 
 ![Population Health Analytics Dashboard](dashboard_overview.png)
 
-[**Open Live Interactive Dashboard →**](https://yuktimadan18.github.io/Healthcare-Analytsis-CA-3/)
+[**Open Live Interactive Dashboard →**](https://yuktimadan18.github.io/Healthcare-Analysis-CA-3/)
 
 
 ### Dashboard sections
